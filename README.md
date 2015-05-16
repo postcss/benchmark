@@ -35,13 +35,13 @@ npm test preprocessors
 [Compare CSS parsers] written on JS:
 
 ```
-PostCSS:     37 ms
-CSSOM:       38 ms  (1.0 times slower)
-Mensch:      39 ms  (1.0 times slower)
-Rework:      67 ms  (1.8 times slower)
-Stylecow:    120 ms (3.2 times slower)
-Gonzales:    173 ms (4.6 times slower)
-Gonzales PE: 935 ms (25.0 times slower)
+CSSOM:       28 ms  (1.2 times faster)
+PostCSS:     34 ms
+Mensch:      36 ms  (1.1 times slower)
+Rework:      50 ms  (1.5 times slower)
+Stylecow:    134 ms (4.0 times slower)
+Gonzales:    153 ms (4.5 times slower)
+Gonzales PE: 890 ms (26.3 times slower)
 ```
 
 To get results on your environment:
