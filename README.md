@@ -8,7 +8,7 @@ All results below was runned on Fedora 21, Intel 5Y70, 8 GB RAM and SSD.
 
 ## Preprocessors
 
-[Compare] CSS processors for parsings, nested rules, mixins, variables and math:
+[Compare CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
 PostCSS:   36 ms
@@ -28,11 +28,11 @@ bundle install
 npm test preprocessors
 ```
 
-[Compare]: https://github.com/postcss/benchmark/blob/master/preprocessors.js
+[Compare CSS processors]: https://github.com/postcss/benchmark/blob/master/preprocessors.js
 
 ## Parsers
 
-[Compare] CSS parsers written on JS:
+[Compare CSS parsers] written on JS:
 
 ```
 PostCSS:     37 ms
@@ -51,4 +51,4 @@ npm install
 npm test parsers
 ```
 
-[Compare]: https://github.com/postcss/benchmark/blob/master/parsers.js
+[Compare CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
