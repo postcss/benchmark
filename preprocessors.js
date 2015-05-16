@@ -15,6 +15,7 @@ var fs   = require('fs');
 
 var example = path.join(__dirname, 'cache', 'bootstrap.css');
 var css     = fs.readFileSync(example).toString();
+var i;
 
 css = css.replace(/\s+filter:[^;\}]+;?/g, '');
 css = css.replace('/*# sourceMappingURL=bootstrap.css.map */', '');
@@ -30,7 +31,7 @@ var processor = postcss([
 var pcss = css;
 pcss += '$size: 100px;';
 pcss += '@define-mixin icon { width: 16px; height: 16px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     pcss += 'body { h1 { a { color: black; } } }';
     pcss += 'h2 { width: $size; }';
     pcss += 'h1 { width: calc(2 * $size); }';
@@ -41,7 +42,7 @@ for ( var i = 0; i < 100; i++ ) {
 var myth = require('myth');
 var rcss = css;
 rcss += ':root { --size: 100px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     rcss += 'body h1 a { color: black; }';
     rcss += 'h2 { width: var(--size); }';
     rcss += 'h1 { width: calc(2 * var(--size)); }';
@@ -53,7 +54,7 @@ var stylecow = require('stylecow');
 stylecow.loadPlugin('variables').loadPlugin('nested-rules').loadPlugin('calc');
 var cowcss = css;
 cowcss += ':root { --size: 100px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     cowcss += 'body { h1 { a { color: black; } } }';
     cowcss += 'h2 { width: var(--size); }';
     cowcss += 'h1 { width: calc(2 * var(--size)); }';
@@ -65,7 +66,7 @@ var libsass = require('node-sass');
 var scss = css;
 scss += '$size: 100px;';
 scss += '@mixin icon { width: 16px; height: 16px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     scss += 'body { h1 { a { color: black; } } }';
     scss += 'h2 { width: $size; }';
     scss += 'h1 { width: 2 * $size; }';
@@ -79,7 +80,7 @@ var stylus = require('stylus');
 var styl = css;
 styl += 'size = 100px;';
 styl += 'icon() { width: 16px; height: 16px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     styl += 'body { h1 { a { color: black; } } }';
     styl += 'h2 { width: size; }';
     styl += 'h1 { width: 2 * size; }';
@@ -91,7 +92,7 @@ var less = require('less');
 var lcss = css;
 lcss += '@size: 100px;';
 lcss += '.icon() { width: 16px; height: 16px; }';
-for ( var i = 0; i < 100; i++ ) {
+for ( i = 0; i < 100; i++ ) {
     lcss += 'body { h1 { a { color: black; } } }';
     lcss += 'h2 { width: @size; }';
     lcss += 'h1 { width: 2 * @size; }';
