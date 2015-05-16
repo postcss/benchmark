@@ -3,5 +3,5 @@ language: node_js
 node_js:
   - iojs
   - "0.12"
-install:
+before_script:
   - bundle install
