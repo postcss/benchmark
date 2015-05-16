@@ -44,4 +44,4 @@ gulp.task('parsers', ['bootstrap'], function () {
         .pipe(summary('PostCSS'));
 });
 
-gulp.task('default', ['lint']);
+gulp.task('default', ['lint', 'preprocessors', 'parsers']);
