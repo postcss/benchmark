@@ -1,6 +1,7 @@
-var gulp = require('gulp');
-var path = require('path');
-var fs   = require('fs-extra');
+var sequence = require('gulp-sequence');
+var gulp     = require('gulp');
+var path     = require('path');
+var fs       = require('fs-extra');
 
 // Lint
 
@@ -38,4 +39,4 @@ gulp.task('bootstrap', function (done) {
     });
 });
 
-gulp.task('default', ['lint', 'preprocessors', 'parsers', 'prefixers']);
+gulp.task('default', sequence('lint', 'preprocessors', 'parsers', 'prefixers'));

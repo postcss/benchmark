@@ -7,6 +7,7 @@
         "load-resources":      "0.1.0",
         "postcss-nested":      "0.3.1",
         "postcss-mixins":      "0.3.0",
+        "gulp-sequence":       "0.3.1",
         "autoprefixer":        "5.1.1",
         "postcss-calc":        "4.0.1",
         "gonzales-pe":         "3.0.0-27",
