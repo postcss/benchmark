@@ -28,20 +28,14 @@ gulp.task('bootstrap', function (done) {
     });
 });
 
-gulp.task('preprocessors', ['bootstrap'], function () {
-    var bench   = require('gulp-bench');
-    var summary = require('gulp-bench-summary');
-    return gulp.src('./preprocessors.js', { read: false })
-        .pipe(bench())
-        .pipe(summary('PostCSS'));
+['preprocessors', 'parsers', 'prefixers'].forEach(function (name) {
+    gulp.task(name, ['bootstrap'], function () {
+        var bench   = require('gulp-bench');
+        var summary = require('gulp-bench-summary');
+        return gulp.src('./' + name + '.js', { read: false })
+            .pipe(bench())
+            .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'));
+    });
 });
 
-gulp.task('parsers', ['bootstrap'], function () {
-    var bench   = require('gulp-bench');
-    var summary = require('gulp-bench-summary');
-    return gulp.src('./parsers.js', { read: false })
-        .pipe(bench())
-        .pipe(summary('PostCSS'));
-});
-
-gulp.task('default', ['lint', 'preprocessors', 'parsers']);
+gulp.task('default', ['lint', 'preprocessors', 'parsers', 'prefixers']);

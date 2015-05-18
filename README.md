@@ -52,3 +52,24 @@ npm test parsers
 ```
 
 [Compare CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
+
+## Prefixers
+
+[Compare vendor prefixes tools]:
+
+```
+Autoprefixer: 59 ms
+Stylecow:     285 ms  (4.8 times slower)
+nib:          403 ms  (6.8 times slower)
+Compass:      2564 ms (43.2 times slower)
+```
+
+To get results on your environment:
+
+```sh
+npm install
+bundle install
+npm test prefixers
+```
+
+[Compare CSS parsers]: https://github.com/postcss/benchmark/blob/master/prefixers.js
