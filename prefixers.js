@@ -40,7 +40,7 @@ var scss = "@import 'compass/css3';\n" + css
     .replace(/background(-image)?:((linear|radial)([^;}]+))(;|})/g,
             '@include background($2)$5')
     .replace(/box-sizing:([^;}]+)(;|})/g, '@include box-sizing($1)$2');
-var scssFile = path.join(__dirname, 'cache/bootstrap.scss');
+var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
 
 module.exports = {

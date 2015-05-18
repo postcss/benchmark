@@ -72,7 +72,7 @@ for ( i = 0; i < 100; i++ ) {
     scss += 'h1 { width: 2 * $size; }';
     scss += '.search { fill: black; @include icon; }';
 }
-var scssFile = path.join(__dirname, 'cache', 'bootstrap.scss');
+var scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss');
 fs.writeFileSync(scssFile, scss);
 
 // Stylus
