@@ -51,7 +51,7 @@ npm install
 npm test parsers
 ```
 
-Compare [CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
+[CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
 
 ## Prefixers
 
@@ -72,4 +72,4 @@ bundle install
 npm test prefixers
 ```
 
-Compare [vendor prefixes tools]: https://github.com/postcss/benchmark/blob/master/prefixers.js
+[vendor prefixes tools]: https://github.com/postcss/benchmark/blob/master/prefixers.js
