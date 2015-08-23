@@ -68,7 +68,7 @@ module.exports = {
         {
             name: 'Stylecow',
             fn: function () {
-                stylecow.parse(css).toString()
+                stylecow.parse(css).toString();
             }
         }
     ]

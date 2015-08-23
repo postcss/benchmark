@@ -51,8 +51,8 @@ for ( i = 0; i < 100; i++ ) {
 
 // Stylecow
 var stylecow = require('stylecow-core');
-stylecow.loadNpmModule('stylecow-plugin-nested-rules')
-stylecow.loadNpmModule('stylecow-plugin-variables')
+stylecow.loadNpmModule('stylecow-plugin-nested-rules');
+stylecow.loadNpmModule('stylecow-plugin-variables');
 stylecow.loadNpmModule('stylecow-plugin-calc');
 var cowcss = css;
 cowcss += ':root { --size: 100px; }';
@@ -132,7 +132,7 @@ module.exports = {
             name: 'Stylecow',
             defer: true,
             fn: function (done) {
-                code = stylecow.parse(cowcss);
+                var code = stylecow.parse(cowcss);
                 stylecow.run(code);
                 done.resolve();
             }
