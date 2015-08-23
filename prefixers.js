@@ -44,7 +44,7 @@ var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
 
 module.exports = {
-    name:   'Bootstrap',
+    name: 'Bootstrap',
     maxTime: 15,
     tests: [
         {

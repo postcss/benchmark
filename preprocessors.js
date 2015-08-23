@@ -100,7 +100,7 @@ for ( i = 0; i < 100; i++ ) {
 }
 
 module.exports = {
-    name:   'Bootstrap',
+    name: 'Bootstrap',
     maxTime: 15,
     tests: [
         {

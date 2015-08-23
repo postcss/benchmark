@@ -24,7 +24,7 @@ var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
 
 module.exports = {
-    name:   'Bootstrap',
+    name: 'Bootstrap',
     maxTime: 15,
     tests: [
         {
