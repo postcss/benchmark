@@ -4,9 +4,9 @@ CSSOM:       28 ms  (1.2 times faster)
 PostCSS:     34 ms
 Mensch:      36 ms  (1.1 times slower)
 Rework:      50 ms  (1.5 times slower)
-Stylecow:    134 ms (4.0 times slower)
+Stylecow:    99 ms  (2.4 times slower)
 Gonzales:    153 ms (4.5 times slower)
-Gonzales PE: 890 ms (26.3 times slower)
+Gonzales PE: 166 ms (4.1 times slower)
 */
 
 var path = require('path');
@@ -19,7 +19,7 @@ var CSSOM      = require('cssom');
 var rework     = require('rework');
 var mensch     = require('mensch');
 var postcss    = require('postcss');
-var stylecow   = require('stylecow');
+var stylecow   = require('stylecow-core');
 var gonzales   = require('gonzales');
 var gonzalesPe = require('gonzales-pe');
 
@@ -68,8 +68,7 @@ module.exports = {
         {
             name: 'Stylecow',
             fn: function () {
-                var file = new stylecow.Reader(new stylecow.Tokens(css));
-                stylecow.Root.create(file).toString();
+                stylecow.parse(css).toString()
             }
         }
     ]
