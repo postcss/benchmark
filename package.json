@@ -3,6 +3,7 @@
   "dependencies": {
     "stylecow-plugin-nested-rules": "4.2.2",
     "stylecow-plugin-variables":    "4.2.0",
+    "stylecow-plugin-prefixes":     "5.0.1",
     "stylecow-plugin-calc":         "1.2.0",
     "postcss-simple-vars":          "1.0.0",
     "gulp-bench-summary":           "0.1.0",

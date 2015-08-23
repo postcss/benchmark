@@ -1,9 +1,9 @@
-/* Results on io.js 2.0, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on io.js 2.4, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
-Autoprefixer: 40 ms
-Stylecow:     135 ms  (3.4 times slower)
-nib:          389 ms  (9.8 times slower)
-Compass:      2364 ms (59.5 times slower)
+Autoprefixer: 74 ms
+Stylecow:     92 ms   (1.2 times slower)
+nib:          392 ms  (5.3 times slower)
+Compass:      2467 ms (33.2 times slower)
 */
 
 var exec = require('child_process').exec;
@@ -21,8 +21,8 @@ css = postcss([ autoprefixer({ browsers: [] }) ]).process(css).css;
 var processor = postcss([ autoprefixer ]);
 
 // Stylecow
-var stylecow = require('stylecow');
-stylecow.loadPlugin('prefixes');
+var stylecow = require('stylecow-core');
+stylecow.loadNpmModule('stylecow-plugin-prefixes');
 
 // nib
 var stylus = require('stylus');
@@ -60,10 +60,8 @@ module.exports = {
             name: 'Stylecow',
             defer: true,
             fn: function (done) {
-                var file = new stylecow.Reader(new stylecow.Tokens(css));
-                var ast  = stylecow.Root.create(file);
-                stylecow.run(ast);
-                ast.toString();
+                var code = stylecow.parse(css);
+                stylecow.run(code);
                 done.resolve();
             }
         },
