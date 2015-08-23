@@ -1,4 +1,4 @@
-/* Results on Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on io.js 2.0, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
 Autoprefixer: 40 ms
 Stylecow:     135 ms  (3.4 times slower)

@@ -1,12 +1,12 @@
-/* Results on io.js 2.0, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on io.js 2.4, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
-PostCSS:   36 ms
-Rework:    77 ms   (2.1 times slower)
-libsass:   136 ms  (3.8 times slower)
-Less:      160 ms  (4.4 times slower)
-Stylus:    167 ms  (4.6 times slower)
-Stylecow:  208 ms  (5.7 times slower)
-Ruby Sass: 1084 ms (30.1 times slower)
+PostCSS:   61 ms
+Rework:    72 ms   (1.2 times slower)
+libsass:   129 ms  (2.1 times slower)
+Less:      152 ms  (2.5 times slower)
+Stylus:    161 ms  (2.6 times slower)
+Stylecow:  171 ms  (2.8 times slower)
+Ruby Sass: 1042 ms (17.0 times slower)
 */
 
 var exec = require('child_process').exec;
@@ -25,7 +25,7 @@ var postcss   = require('postcss');
 var processor = postcss([
     require('postcss-nested'),
     require('postcss-simple-vars'),
-    require('postcss-calc')(),
+    require('postcss-calc'),
     require('postcss-mixins')
 ]);
 var pcss = css;

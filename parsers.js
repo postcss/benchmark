@@ -1,4 +1,4 @@
-/* Results on Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on io.js 2.4, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
 
 CSSOM:       28 ms  (1.2 times faster)
 PostCSS:     34 ms
