@@ -14,15 +14,17 @@ var example = path.join(__dirname, 'cache', 'bootstrap.css');
 var css     = fs.readFileSync(example).toString();
 
 // Autoprefixer
-var autoprefixer = require('autoprefixer-core');
+var autoprefixer = require('autoprefixer');
 var postcss      = require('postcss');
 
 css = postcss([ autoprefixer({ browsers: [] }) ]).process(css).css;
 var processor = postcss([ autoprefixer ]);
 
 // Stylecow
-var stylecow = require('stylecow-core');
-stylecow.loadNpmModule('stylecow-plugin-prefixes');
+var stylecow    = require('stylecow-core');
+var stylecowOut = new stylecow.Coder();
+var stylecower  = new stylecow.Tasks();
+stylecower.use(require('stylecow-plugin-prefixes'));
 
 // nib
 var stylus = require('stylus');
@@ -61,7 +63,8 @@ module.exports = {
             defer: true,
             fn: function (done) {
                 var code = stylecow.parse(css);
-                stylecow.run(code);
+                stylecower.run(code);
+                stylecowOut.run(code);
                 done.resolve();
             }
         },

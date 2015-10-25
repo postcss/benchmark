@@ -50,10 +50,12 @@ for ( i = 0; i < 100; i++ ) {
 }
 
 // Stylecow
-var stylecow = require('stylecow-core');
-stylecow.loadNpmModule('stylecow-plugin-nested-rules');
-stylecow.loadNpmModule('stylecow-plugin-variables');
-stylecow.loadNpmModule('stylecow-plugin-calc');
+var stylecow    = require('stylecow-core');
+var stylecowOut = new stylecow.Coder();
+var stylecower  = new stylecow.Tasks();
+stylecower.use(require('stylecow-plugin-nested-rules'));
+stylecower.use(require('stylecow-plugin-variables'));
+stylecower.use(require('stylecow-plugin-calc'));
 var cowcss = css;
 cowcss += ':root { --size: 100px; }';
 for ( i = 0; i < 100; i++ ) {
@@ -133,7 +135,8 @@ module.exports = {
             defer: true,
             fn: function (done) {
                 var code = stylecow.parse(cowcss);
-                stylecow.run(code);
+                stylecower.run(code);
+                stylecowOut.run(code);
                 done.resolve();
             }
         },
