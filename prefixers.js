@@ -1,9 +1,9 @@
-/* Results on io.js 2.4, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 4.2.1, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
 
-Autoprefixer: 74 ms
-Stylecow:     92 ms   (1.2 times slower)
-nib:          392 ms  (5.3 times slower)
-Compass:      2467 ms (33.2 times slower)
+Autoprefixer: 67 ms
+Stylecow:     216 ms  (3.2 times slower)
+nib:          402 ms  (6.0 times slower)
+Compass:      2491 ms (37.0 times slower)
 */
 
 var exec = require('child_process').exec;

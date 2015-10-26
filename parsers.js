@@ -1,12 +1,12 @@
-/* Results on io.js 2.4, Fedora 21, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 4.2.1, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
 
-CSSOM:       28 ms  (1.2 times faster)
-PostCSS:     34 ms
-Mensch:      36 ms  (1.1 times slower)
-Rework:      50 ms  (1.5 times slower)
-Stylecow:    99 ms  (2.4 times slower)
-Gonzales:    153 ms (4.5 times slower)
-Gonzales PE: 166 ms (4.1 times slower)
+Mensch:      28 ms  (1.4 times faster)
+CSSOM:       31 ms  (1.3 times faster)
+PostCSS:     41 ms
+Rework:      54 ms  (1.3 times slower)
+Stylecow:    108 ms (2.7 times slower)
+Gonzales:    166 ms (4.1 times slower)
+Gonzales PE: 173 ms (4.2 times slower)
 */
 
 var path = require('path');
