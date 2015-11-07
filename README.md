@@ -2,7 +2,7 @@
 
 Various benchmarks to have feedback about [PostCSS] perfomance.
 
-All results below was runned on node 5, Fedora 22, Intel 5Y70,
+All results below was runned on node 5.0.0, Fedora 22, Intel 5Y70,
 8 GB RAM and SSD:
 
 [PostCSS]: https://github.com/postcss/postcss
@@ -12,13 +12,13 @@ All results below was runned on node 5, Fedora 22, Intel 5Y70,
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
-PostCSS:   60 ms
-libsass:   74 ms   (1.2 times slower)
-Rework:    74 ms   (1.2 times slower)
-Less:      161 ms  (2.7 times slower)
-Stylus:    174 ms  (2.9 times slower)
-Stylecow:  262 ms  (4.4 times slower)
-Ruby Sass: 1033 ms (17.3 times slower)
+PostCSS:   40 ms
+Rework:    75 ms   (1.9 times slower)
+libsass:   76 ms   (1.9 times slower)
+Less:      147 ms  (3.7 times slower)
+Stylus:    166 ms  (4.1 times slower)
+Stylecow:  258 ms  (6.4 times slower)
+Ruby Sass: 1042 ms (26.0 times slower)
 ```
 
 To get results on your environment:
@@ -36,13 +36,13 @@ npm test preprocessors
 Compare [CSS parsers] written on JS:
 
 ```
-Mensch:      28 ms  (1.4 times faster)
-CSSOM:       31 ms  (1.3 times faster)
-PostCSS:     41 ms
-Rework:      54 ms  (1.3 times slower)
-Stylecow:    108 ms (2.7 times slower)
-Gonzales:    166 ms (4.1 times slower)
-Gonzales PE: 173 ms (4.2 times slower)
+Mensch:      28 ms  (1.3 times faster)
+CSSOM:       34 ms  (1.1 times faster)
+PostCSS:     36 ms
+Rework:      51 ms  (1.4 times slower)
+Stylecow:    102 ms (2.8 times slower)
+Gonzales:    159 ms (4.4 times slower)
+Gonzales PE: 178 ms (4.9 times slower)
 ```
 
 To get results on your environment:
@@ -59,10 +59,10 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
-Autoprefixer: 67 ms
-Stylecow:     216 ms  (3.2 times slower)
-nib:          402 ms  (6.0 times slower)
-Compass:      2491 ms (37.0 times slower)
+Autoprefixer: 45 ms
+Stylecow:     200 ms  (4.5 times slower)
+nib:          381 ms  (8.5 times slower)
+Compass:      2451 ms (54.5 times slower)
 ```
 
 To get results on your environment:
