@@ -1,4 +1,4 @@
-/* Results on node 4.2.1, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 5, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
 
 Autoprefixer: 67 ms
 Stylecow:     216 ms  (3.2 times slower)

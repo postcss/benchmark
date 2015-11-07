@@ -2,7 +2,7 @@
 
 Various benchmarks to have feedback about [PostCSS] perfomance.
 
-All results below was runned on node 4.2.1, Fedora 22, Intel 5Y70,
+All results below was runned on node 5, Fedora 22, Intel 5Y70,
 8 GB RAM and SSD:
 
 [PostCSS]: https://github.com/postcss/postcss

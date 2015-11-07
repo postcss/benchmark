@@ -1,4 +1,4 @@
-/* Results on node 4.2.1, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 5, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
 
 Mensch:      28 ms  (1.4 times faster)
 CSSOM:       31 ms  (1.3 times faster)
