@@ -86,7 +86,7 @@ module.exports = {
             fn: function (done) {
                 var command = 'sass -C --compass --sourcemap=none ' + scssFile;
                 var dir = __dirname;
-                exec('cd ' + dir + '; bundle exec ' + command,
+                exec('bundle exec ' + command,
                     function (error, stdout, stderr) {
                         if ( error ) throw stderr;
                         done.resolve();
