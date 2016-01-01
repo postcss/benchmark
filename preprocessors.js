@@ -1,12 +1,12 @@
-/* Results on node 5.0.0, Fedora 22, Intel 5Y70, 8 GB RAM and SSD::
+/* Results on node 5.3.0, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
 
-PostCSS:   40 ms
-Rework:    75 ms   (1.9 times slower)
-libsass:   76 ms   (1.9 times slower)
-Less:      147 ms  (3.7 times slower)
-Stylus:    166 ms  (4.1 times slower)
-Stylecow:  258 ms  (6.4 times slower)
-Ruby Sass: 1042 ms (26.0 times slower)
+PostCSS:   39 ms
+Rework:    73 ms   (1.9 times slower)
+libsass:   77 ms   (1.9 times slower)
+Less:      179 ms  (4.5 times slower)
+Stylus:    269 ms  (6.8 times slower)
+Stylecow:  271 ms  (6.9 times slower)
+Ruby Sass: 1101 ms (28.0 times slower)
 */
 
 var exec = require('child_process').exec;
