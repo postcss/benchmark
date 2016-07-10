@@ -173,3 +173,23 @@ module.exports = {
         }
     ]
 };
+
+var devPath = path.join(__dirname, '../postcss/build/lib/postcss.js');
+if ( fs.existsSync(devPath) ) {
+    var devPostcss   = require(devPath);
+    var devProcessor = devPostcss([
+        require('postcss-nested'),
+        require('postcss-simple-vars'),
+        require('postcss-calc'),
+        require('postcss-mixins')
+    ]);
+    module.exports.tests.splice(2, 0, {
+        name: 'PostCSS dev',
+        defer: true,
+        fn: function (done) {
+            devProcessor.process(pcss, { map: false }).then(function () {
+                done.resolve();
+            });
+        }
+    });
+}
