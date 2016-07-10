@@ -1,9 +1,9 @@
-/* Results on node 5.3.0, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 6.3.0, Fedora 23, Intel Core i7-6500U, 8 GB RAM and SSD:
 
-Autoprefixer: 45 ms
-Stylecow:     215 ms  (4.7 times slower)
-nib:          470 ms  (10.4 times slower)
-Compass:      2475 ms (54.5 times slower)
+Autoprefixer: 48 ms
+Stylecow:     197 ms  (4.1 times slower)
+nib:          409 ms  (8.5 times slower)
+Compass:      2398 ms (50.1 times slower)
 */
 
 var exec = require('child_process').exec;
@@ -28,7 +28,7 @@ stylecower.use(require('stylecow-plugin-prefixes'));
 
 // nib
 var stylus = require('stylus');
-var styl = "@import 'nib';\n" + css
+var styl = '@import \'nib\';\n' + css
     .replace('@charset "UTF-8";', '')
     .replace(/\}/g, '}\n').replace(/(\w)\[[^\]]+\]/g, '$1')
     .replace(/filter:[^;}]+;?/ig, '')
@@ -36,7 +36,7 @@ var styl = "@import 'nib';\n" + css
     .replace(/url\([^\)]+\)/ig, 'white');
 
 // Compass
-var scss = "@import 'compass/css3';\n" + css
+var scss = '@import \'compass/css3\';\n' + css
     .replace(/([^-])transform:([^;}]+)(;|})/g, '$1@include transform($2)$3')
     .replace(/transition:([^;}]+)(;|})/g, '@include transition($1)$2')
     .replace(/background(-image)?:((linear|radial)([^;}]+))(;|})/g,

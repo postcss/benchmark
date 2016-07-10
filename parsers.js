@@ -1,12 +1,12 @@
-/* Results on node 5.3.0, Fedora 22, Intel 5Y70, 8 GB RAM and SSD:
+/* Results on node 6.3.0, Fedora 23, Intel Core i7-6500U, 8 GB RAM and SSD:
 
-Mensch:      30 ms  (1.2 times faster)
-CSSOM:       33 ms  (1.1 times faster)
+Mensch:      24 ms  (1.5 times faster)
+CSSOM:       25 ms  (1.4 times faster)
 PostCSS:     37 ms
-Rework:      51 ms  (1.4 times slower)
-Stylecow:    100 ms (2.7 times slower)
-Gonzales:    158 ms (4.3 times slower)
-Gonzales PE: 163 ms (4.4 times slower)
+Rework:      47 ms  (1.3 times slower)
+Stylecow:    74 ms  (2.0 times slower)
+Gonzales:    113 ms (3.1 times slower)
+Gonzales PE: 138 ms (3.8 times slower)
 */
 
 var path = require('path');

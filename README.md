@@ -2,7 +2,7 @@
 
 Various benchmarks to have feedback about [PostCSS] perfomance.
 
-All results below was runned on node 5.3.0, Fedora 22, Intel 5Y70,
+All results below was runned on node 6.3.0, Fedora 23, Intel Core i7-6500U,
 8 GB RAM and SSD:
 
 [PostCSS]: https://github.com/postcss/postcss
@@ -12,13 +12,13 @@ All results below was runned on node 5.3.0, Fedora 22, Intel 5Y70,
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
-PostCSS:   39 ms
-Rework:    73 ms   (1.9 times slower)
-libsass:   77 ms   (1.9 times slower)
-Less:      179 ms  (4.5 times slower)
-Stylus:    269 ms  (6.8 times slower)
-Stylecow:  271 ms  (6.9 times slower)
-Ruby Sass: 1101 ms (28.0 times slower)
+PostCSS:   40 ms
+libsass:   77 ms  (1.9 times slower)
+Rework:    87 ms  (2.2 times slower)
+Less:      159 ms (4.0 times slower)
+Stylus:    224 ms (5.7 times slower)
+Stylecow:  232 ms (5.9 times slower)
+Ruby Sass: 872 ms (22.0 times slower)
 ```
 
 To get results on your environment:
@@ -36,13 +36,13 @@ npm test preprocessors
 Compare [CSS parsers] written on JS:
 
 ```
-Mensch:      30 ms  (1.2 times faster)
-CSSOM:       33 ms  (1.1 times faster)
+Mensch:      24 ms  (1.5 times faster)
+CSSOM:       25 ms  (1.4 times faster)
 PostCSS:     37 ms
-Rework:      51 ms  (1.4 times slower)
-Stylecow:    100 ms (2.7 times slower)
-Gonzales:    158 ms (4.3 times slower)
-Gonzales PE: 163 ms (4.4 times slower)
+Rework:      47 ms  (1.3 times slower)
+Stylecow:    74 ms  (2.0 times slower)
+Gonzales:    113 ms (3.1 times slower)
+Gonzales PE: 138 ms (3.8 times slower)
 ```
 
 To get results on your environment:
@@ -59,10 +59,10 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
-Autoprefixer: 45 ms
-Stylecow:     215 ms  (4.7 times slower)
-nib:          470 ms  (10.4 times slower)
-Compass:      2475 ms (54.5 times slower)
+Autoprefixer: 48 ms
+Stylecow:     197 ms  (4.1 times slower)
+nib:          409 ms  (8.5 times slower)
+Compass:      2398 ms (50.1 times slower)
 ```
 
 To get results on your environment:

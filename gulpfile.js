@@ -21,7 +21,10 @@ gulp.task('clean', function (done) {
 
 gulp.task('bootstrap', function (done) {
     var cache = path.join(__dirname, 'cache', 'bootstrap.css');
-    if ( fs.existsSync(cache) ) return done();
+    if ( fs.existsSync(cache) ) {
+        done();
+        return;
+    }
 
     var load = require('load-resources');
     load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', function (f) {
