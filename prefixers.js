@@ -93,3 +93,20 @@ module.exports = {
         }
     ]
 };
+
+var devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js');
+var devP = path.join(__dirname, '../postcss/build/lib/postcss.js');
+if ( fs.existsSync(devA) && fs.existsSync(devP) ) {
+    var devAutoprefixer = require(devA);
+    var devPostcss      = require(devP);
+    var devProcessor    = devPostcss([devAutoprefixer]);
+    module.exports.tests.splice(0, 0, {
+        name: 'Autoprefixer dev',
+        defer: true,
+        fn: function (done) {
+            devProcessor.process(css, { map: false }).then(function () {
+                done.resolve();
+            });
+        }
+    });
+}
