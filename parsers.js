@@ -7,6 +7,7 @@ Rework:      47 ms  (1.3 times slower)
 Stylecow:    74 ms  (2.0 times slower)
 Gonzales:    113 ms (3.1 times slower)
 Gonzales PE: 138 ms (3.8 times slower)
+ParserLib:   251 ms (6.8 times slower)
 */
 
 var path = require('path');
@@ -21,6 +22,7 @@ var mensch     = require('mensch');
 var postcss    = require('postcss');
 var stylecow   = require('stylecow-core');
 var gonzales   = require('gonzales');
+var parserlib  = require('parserlib');
 var gonzalesPe = require('gonzales-pe');
 
 module.exports = {
@@ -63,6 +65,12 @@ module.exports = {
             name: 'Gonzales PE',
             fn: function () {
                 gonzalesPe.parse(css).toString();
+            }
+        },
+        {
+            name: 'ParserLib',
+            fn: function () {
+                (new parserlib.css.Parser()).parse(css);
             }
         },
         {
