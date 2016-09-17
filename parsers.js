@@ -20,10 +20,24 @@ var CSSOM      = require('cssom');
 var rework     = require('rework');
 var mensch     = require('mensch');
 var postcss    = require('postcss');
+var postcssSP  = require('postcss-selector-parser')();
+var postcssVP  = require('postcss-value-parser');
 var stylecow   = require('stylecow-core');
 var gonzales   = require('gonzales');
 var parserlib  = require('parserlib');
 var gonzalesPe = require('gonzales-pe');
+var csstree    = require('css-tree');
+
+var postcssParseDetails = function (root) {
+    root.walkRules(rule => {
+        rule.selector = postcssSP.process(rule.selector);
+    });
+    root.walkDecls(decl => {
+        decl.value = postcssVP(decl.value);
+    });
+
+    return root;
+};
 
 module.exports = {
     name: 'Bootstrap',
@@ -40,6 +54,15 @@ module.exports = {
             defer: true,
             fn: function (done) {
                 postcss.parse(css, { from: example }).toResult();
+                done.resolve();
+            }
+        },
+        {
+            name: 'PostCSS + PSP + PVP',
+            defer: true,
+            fn: function (done) {
+                postcssParseDetails(postcss.parse(css, { from: example }))
+                    .toResult();
                 done.resolve();
             }
         },
@@ -65,6 +88,12 @@ module.exports = {
             name: 'Gonzales PE',
             fn: function () {
                 gonzalesPe.parse(css).toString();
+            }
+        },
+        {
+            name: 'CSSTree',
+            fn: function () {
+                csstree.translate(csstree.parse(css));
             }
         },
         {
