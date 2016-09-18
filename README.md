@@ -2,7 +2,7 @@
 
 Various benchmarks to have feedback about [PostCSS] perfomance.
 
-All results below was runned on node 6.3.0, Fedora 23, Intel Core i7-6500U,
+All results below was runned on node 6.6.0, Fedora 23, Intel Core i7-6500U,
 8 GB RAM and SSD:
 
 [PostCSS]: https://github.com/postcss/postcss
@@ -12,13 +12,13 @@ All results below was runned on node 6.3.0, Fedora 23, Intel Core i7-6500U,
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
-PostCSS:   40 ms
+PostCSS:   42 ms
+Rework:    68 ms  (1.6 times slower)
 libsass:   77 ms  (1.9 times slower)
-Rework:    87 ms  (2.2 times slower)
-Less:      159 ms (4.0 times slower)
-Stylus:    224 ms (5.7 times slower)
-Stylecow:  232 ms (5.9 times slower)
-Ruby Sass: 872 ms (22.0 times slower)
+Less:      142 ms (3.4 times slower)
+Stylus:    200 ms (4.8 times slower)
+Stylecow:  259 ms (6.2 times slower)
+Ruby Sass: 877 ms (21.0 times slower)
 ```
 
 To get results on your environment:
@@ -36,14 +36,16 @@ npm test preprocessors
 Compare [CSS parsers] written on JS:
 
 ```
-Mensch:      24 ms  (1.5 times faster)
-CSSOM:       25 ms  (1.4 times faster)
-PostCSS:     37 ms
-Rework:      47 ms  (1.3 times slower)
-Stylecow:    74 ms  (2.0 times slower)
-Gonzales:    113 ms (3.1 times slower)
-Gonzales PE: 138 ms (3.8 times slower)
-ParserLib:   251 ms (6.8 times slower)
+CSSTree:      17 ms  (1.5 times faster)
+Mensch:       23 ms  (1.1 times faster)
+CSSOM:        24 ms  (1.0 times faster)
+PostCSS:      25 ms
+Rework:       48 ms  (1.9 times slower)
+PostCSS Full: 69 ms  (2.8 times slower)
+Stylecow:     102 ms (4.1 times slower)
+Gonzales:     109 ms (4.3 times slower)
+Gonzales PE:  136 ms (5.4 times slower)
+ParserLib:    299 ms (11.9 times slower)
 ```
 
 To get results on your environment:
@@ -60,10 +62,10 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
-Autoprefixer: 48 ms
-Stylecow:     197 ms  (4.1 times slower)
-nib:          409 ms  (8.5 times slower)
-Compass:      2398 ms (50.1 times slower)
+Autoprefixer: 44 ms
+Stylecow:     200 ms  (4.5 times slower)
+nib:          340 ms  (7.7 times slower)
+Compass:      2417 ms (54.9 times slower)
 ```
 
 To get results on your environment:
