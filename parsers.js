@@ -28,17 +28,6 @@ var parserlib  = require('parserlib');
 var gonzalesPe = require('gonzales-pe');
 var csstree    = require('css-tree');
 
-var postcssParseDetails = function (root) {
-    root.walkRules(rule => {
-        rule.selector = postcssSP.process(rule.selector);
-    });
-    root.walkDecls(decl => {
-        decl.value = postcssVP(decl.value);
-    });
-
-    return root;
-};
-
 module.exports = {
     name: 'Bootstrap',
     maxTime: 15,
@@ -58,11 +47,18 @@ module.exports = {
             }
         },
         {
-            name: 'PostCSS + PSP + PVP',
+            name: 'PostCSS Full',
             defer: true,
             fn: function (done) {
-                postcssParseDetails(postcss.parse(css, { from: example }))
-                    .toResult();
+                let root = postcss.parse(css, { from: example });
+                root.walk(node => {
+                    if ( node.type === 'rule' ) {
+                        node.selector = postcssSP.process(node.selector);
+                    } else if ( node.type === 'decl' ) {
+                        node.value = postcssVP(node.value);
+                    }
+                });
+                root.toResult();
                 done.resolve();
             }
         },
