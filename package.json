@@ -28,7 +28,7 @@
     "through2":                     "2.0.1",
     "gonzales":                     "1.0.7",
     "fs-extra":                     "0.30.0",
-    "css-tree":                     "1.0.0-alpha3",
+    "css-tree":                     "1.0.0-alpha4",
     "postcss":                      "5.2.0",
     "mensch":                       "0.3.1",
     "stylus":                       "0.54.5",
