@@ -2,6 +2,7 @@
 *~
 
 npm-debug.log
+yarn-error.log
 node_modules/
 .bundle/
 
