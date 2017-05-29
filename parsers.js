@@ -110,7 +110,7 @@ module.exports = {
         {
             name: 'Stylis',
             fn: function () {
-                stylis('', css)
+                stylis('', css);
             }
         }
     ]

@@ -46,7 +46,7 @@ var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
 
 // Stylis
-var stylis = require('stylis')
+var stylis = require('stylis');
 
 module.exports = {
     name: 'Bootstrap',

@@ -184,9 +184,11 @@ module.exports = {
         },
         {
             name: 'Stylis',
-            fn: function () {
+            defer: true,
+            fn: function (done) {
                 stylis('', styi);
-            }  
+                done.resolve();
+            }
         }
     ]
 };
