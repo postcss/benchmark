@@ -37,7 +37,8 @@
     "stylecow-plugin-prefixes": "^6.0.5",
     "stylecow-plugin-variables": "^5.1.1",
     "stylus": "^0.54.5",
-    "through2": "^2.0.3"
+    "through2": "^2.0.3",
+    "stylis": "^3.0.5"
   },
   "scripts": {
     "lint-staged": "lint-staged",

@@ -29,6 +29,7 @@ var gonzales   = require('gonzales');
 var parserlib  = require('parserlib');
 var gonzalesPe = require('gonzales-pe');
 var csstree    = require('css-tree');
+var stylis     = require('stylis');
 
 module.exports = {
     name: 'Bootstrap',
@@ -104,6 +105,12 @@ module.exports = {
             name: 'Stylecow',
             fn: function () {
                 stylecow.parse(css).toString();
+            }
+        },
+        {
+            name: 'Stylis',
+            fn: function () {
+                stylis('', css)
             }
         }
     ]
