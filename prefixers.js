@@ -45,6 +45,10 @@ var scss = '@import \'compass/css3\';\n' + css
 var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
 
+// Stylis
+var Stylis = require('stylis');
+var stylis = new Stylis();
+
 module.exports = {
     name: 'Bootstrap',
     maxTime: 15,
@@ -89,6 +93,14 @@ module.exports = {
                     if ( err ) throw stderr;
                     done.resolve();
                 });
+            }
+        },
+        {
+            name: 'Stylis',
+            defer: true,
+            fn: function (done) {
+                stylis('', css);
+                done.resolve();
             }
         }
     ]

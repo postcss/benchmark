@@ -103,6 +103,24 @@ for ( i = 0; i < 100; i++ ) {
     lcss += '.search { fill: black; .icon() }';
 }
 
+// Stylis
+var Stylis = require('stylis');
+var stylis = new Stylis();
+var styi = css;
+styi += ':root { --size: 100px; }';
+for ( i = 0; i < 100; i++ ) {
+    styi += 'body h1 a { color: black; }';
+    styi += 'h2 { width: var(--size); }';
+    styi += 'h1 { width: calc(2 * var(--size)); }';
+    styi += '.search { fill: black; width: 16px; height: 16px; }';
+}
+
+stylis.use([
+    require('stylis-mixin'),
+    require('stylis-calc'),
+    require('stylis-custom-properties')
+]);
+
 module.exports = {
     name: 'Bootstrap',
     maxTime: 15,
@@ -169,6 +187,14 @@ module.exports = {
                     if ( err ) throw stderr;
                     done.resolve();
                 });
+            }
+        },
+        {
+            name: 'Stylis',
+            defer: true,
+            fn: function (done) {
+                stylis('', styi);
+                done.resolve();
             }
         }
     ]
