@@ -1,12 +1,12 @@
-var sequence = require('gulp-sequence');
-var gulp     = require('gulp');
-var path     = require('path');
-var fs       = require('fs-extra');
+const sequence = require('gulp-sequence');
+const gulp     = require('gulp');
+const path     = require('path');
+const fs       = require('fs-extra');
 
 // Lint
 
-gulp.task('lint', function () {
-    var eslint = require('gulp-eslint');
+gulp.task('lint', () => {
+    const eslint = require('gulp-eslint');
     return gulp.src(['*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
@@ -15,31 +15,31 @@ gulp.task('lint', function () {
 
 // Benchmark
 
-gulp.task('clean', function (done) {
+gulp.task('clean', done => {
     fs.remove(path.join(__dirname, '/cache'), done);
 });
 
-gulp.task('bootstrap', function (done) {
-    var cache = path.join(__dirname, 'cache', 'bootstrap.css');
+gulp.task('bootstrap', done => {
+    const cache = path.join(__dirname, 'cache', 'bootstrap.css');
     if ( fs.existsSync(cache) ) {
         done();
         return;
     }
 
-    var load = require('load-resources');
-    load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', function (f) {
-        fs.outputFile(cache, f, done);
+    const load = require('load-resources');
+    load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', css => {
+        fs.outputFile(cache, css, done);
     });
 });
 
-['preprocessors', 'parsers', 'prefixers'].forEach(function (name) {
-    gulp.task(name, ['bootstrap'], function () {
-        var bench   = require('gulp-bench');
-        var summary = require('gulp-bench-summary');
-        return gulp.src('./' + name + '.js', { read: false })
+['preprocessors', 'parsers'].forEach(name => {
+    gulp.task(name, ['bootstrap'], () => {
+        const bench   = require('gulp-bench');
+        const summary = require('gulp-bench-summary');
+        return gulp.src(`./${ name }.js`, { read: false })
             .pipe(bench())
-            .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'));
+            .pipe(summary('PostCSS'));
     });
 });
 
-gulp.task('default', sequence('lint', 'preprocessors', 'parsers', 'prefixers'));
+gulp.task('default', sequence('lint', 'preprocessors', 'parsers'));

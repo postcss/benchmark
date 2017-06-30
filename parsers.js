@@ -12,25 +12,25 @@ Gonzales PE:  150 ms (5.1 times slower)
 ParserLib:    316 ms (10.8 times slower)
 */
 
-var path = require('path');
-var fs   = require('fs');
+const path = require('path');
+const fs   = require('fs');
 
-var example = path.join(__dirname, 'cache', 'bootstrap.css');
-var css     = fs.readFileSync(example).toString();
+const example = path.join(__dirname, 'cache', 'bootstrap.css');
+const css     = fs.readFileSync(example).toString();
 
-var CSSOM      = require('cssom');
-var rework     = require('rework');
-var mensch     = require('mensch');
-var postcss    = require('postcss');
-var postcssSP  = require('postcss-selector-parser')();
-var postcssVP  = require('postcss-value-parser');
-var stylecow   = require('stylecow-core');
-var gonzales   = require('gonzales');
-var parserlib  = require('parserlib');
-var gonzalesPe = require('gonzales-pe');
-var csstree    = require('css-tree');
-var Stylis     = require('stylis');
-var stylis     = new Stylis();
+const CSSOM      = require('cssom');
+const rework     = require('rework');
+const mensch     = require('mensch');
+const postcss    = require('postcss');
+const postcssSP  = require('postcss-selector-parser')();
+const postcssVP  = require('postcss-value-parser');
+const stylecow   = require('stylecow-core');
+const gonzales   = require('gonzales');
+const parserlib  = require('parserlib');
+const gonzalesPe = require('gonzales-pe');
+const csstree    = require('css-tree');
+const Stylis     = require('stylis');
+const stylis     = new Stylis();
 
 module.exports = {
     name: 'Bootstrap',
@@ -38,14 +38,14 @@ module.exports = {
     tests: [
         {
             name: 'Rework',
-            fn: function () {
+            fn: () => {
                 rework(css).toString();
             }
         },
         {
             name: 'PostCSS',
             defer: true,
-            fn: function (done) {
+            fn: done => {
                 postcss.parse(css, { from: example }).toResult();
                 done.resolve();
             }
@@ -53,8 +53,8 @@ module.exports = {
         {
             name: 'PostCSS Full',
             defer: true,
-            fn: function (done) {
-                let root = postcss.parse(css, { from: example });
+            fn: done => {
+                const root = postcss.parse(css, { from: example });
                 root.walk(node => {
                     if ( node.type === 'rule' ) {
                         node.selector = postcssSP.process(node.selector);
@@ -68,62 +68,62 @@ module.exports = {
         },
         {
             name: 'CSSOM',
-            fn: function () {
+            fn: () => {
                 CSSOM.parse(css).toString();
             }
         },
         {
             name: 'Mensch',
-            fn: function () {
+            fn: () => {
                 mensch.stringify( mensch.parse(css) );
             }
         },
         {
             name: 'Gonzales',
-            fn: function () {
+            fn: () => {
                 gonzales.csspToSrc( gonzales.srcToCSSP(css) );
             }
         },
         {
             name: 'Gonzales PE',
-            fn: function () {
+            fn: () => {
                 gonzalesPe.parse(css).toString();
             }
         },
         {
             name: 'CSSTree',
-            fn: function () {
+            fn: () => {
                 csstree.translate(csstree.parse(css));
             }
         },
         {
             name: 'ParserLib',
-            fn: function () {
+            fn: () => {
                 (new parserlib.css.Parser()).parse(css);
             }
         },
         {
             name: 'Stylecow',
-            fn: function () {
+            fn: () => {
                 stylecow.parse(css).toString();
             }
         },
         {
             name: 'Stylis',
-            fn: function () {
+            fn: () => {
                 stylis('', css);
             }
         }
     ]
 };
 
-var devPath = path.join(__dirname, '../postcss/build/lib/postcss.js');
+const devPath = path.join(__dirname, '../postcss/build/lib/postcss.js');
 if ( fs.existsSync(devPath) ) {
-    var devPostcss = require(devPath);
+    const devPostcss = require(devPath);
     module.exports.tests.splice(1, 0, {
         name: 'PostCSS dev',
         defer: true,
-        fn: function (done) {
+        fn: done => {
             devPostcss.parse(css, { from: example }).toResult();
             done.resolve();
         }

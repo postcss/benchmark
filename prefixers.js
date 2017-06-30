@@ -6,29 +6,29 @@ nib:          313 ms  (6.1 times slower)
 Compass:      3298 ms (64.4 times slower)
 */
 
-var exec = require('child_process').exec;
-var path = require('path');
-var fs   = require('fs');
+const exec = require('child_process').exec;
+const path = require('path');
+const fs   = require('fs');
 
-var example = path.join(__dirname, 'cache', 'bootstrap.css');
-var css     = fs.readFileSync(example).toString();
+const example = path.join(__dirname, 'cache', 'bootstrap.css');
+const origin  = fs.readFileSync(example).toString();
 
 // Autoprefixer
-var autoprefixer = require('autoprefixer');
-var postcss      = require('postcss');
+const autoprefixer = require('autoprefixer');
+const postcss      = require('postcss');
 
-css = postcss([ autoprefixer({ browsers: [] }) ]).process(css).css;
-var processor = postcss([ autoprefixer ]);
+const css = postcss([ autoprefixer({ browsers: [] }) ]).process(origin).css;
+const processor = postcss([ autoprefixer ]);
 
 // Stylecow
-var stylecow    = require('stylecow-core');
-var stylecowOut = new stylecow.Coder();
-var stylecower  = new stylecow.Tasks();
+const stylecow    = require('stylecow-core');
+const stylecowOut = new stylecow.Coder();
+const stylecower  = new stylecow.Tasks();
 stylecower.use(require('stylecow-plugin-prefixes'));
 
 // nib
-var stylus = require('stylus');
-var styl = '@import \'nib\';\n' + css
+const stylus = require('stylus');
+const styl = '@import \'nib\';\n' + css
     .replace('@charset "UTF-8";', '')
     .replace(/\}/g, '}\n').replace(/(\w)\[[^\]]+\]/g, '$1')
     .replace(/filter:[^;}]+;?/ig, '')
@@ -36,7 +36,7 @@ var styl = '@import \'nib\';\n' + css
     .replace(/url\([^\)]+\)/ig, 'white');
 
 // Compass
-var scss = '@import \'compass/css3\';\n' + css
+const scss = '@import \'compass/css3\';\n' + css
     .replace(/([^-])transform:([^;}]+)(;|})/g, '$1@include transform($2)$3')
     .replace(/transition:([^;}]+)(;|})/g, '@include transition($1)$2')
     .replace(
@@ -44,12 +44,12 @@ var scss = '@import \'compass/css3\';\n' + css
         '@include background($2)$5'
     )
     .replace(/box-sizing:([^;}]+)(;|})/g, '@include box-sizing($1)$2');
-var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
+const scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
 
 // Stylis
-var Stylis = require('stylis');
-var stylis = new Stylis();
+const Stylis = require('stylis');
+const stylis = new Stylis();
 
 module.exports = {
     name: 'Bootstrap',
@@ -58,8 +58,8 @@ module.exports = {
         {
             name: 'Autoprefixer',
             defer: true,
-            fn: function (done) {
-                processor.process(css, { map: false }).then(function () {
+            fn: done => {
+                processor.process(css, { map: false }).then(() => {
                     done.resolve();
                 });
             }
@@ -67,8 +67,8 @@ module.exports = {
         {
             name: 'Stylecow',
             defer: true,
-            fn: function (done) {
-                var code = stylecow.parse(css);
+            fn: done => {
+                const code = stylecow.parse(css);
                 stylecower.run(code);
                 stylecowOut.run(code);
                 done.resolve();
@@ -77,10 +77,10 @@ module.exports = {
         {
             name: 'nib',
             defer: true,
-            fn: function (done) {
+            fn: done => {
                 stylus(styl)
                     .include(require('nib').path)
-                    .render(function (err) {
+                    .render(err => {
                         if ( err ) throw err;
                         done.resolve();
                     });
@@ -89,9 +89,9 @@ module.exports = {
         {
             name: 'Compass',
             defer: true,
-            fn: function (done) {
-                var command = 'sass -C --compass --sourcemap=none ' + scssFile;
-                exec('bundle exec ' + command, function (err, stdout, stderr) {
+            fn: done => {
+                const cmd = 'sass -C --compass --sourcemap=none ' + scssFile;
+                exec('bundle exec ' + cmd, (err, stdout, stderr) => {
                     if ( err ) throw stderr;
                     done.resolve();
                 });
@@ -100,7 +100,7 @@ module.exports = {
         {
             name: 'Stylis',
             defer: true,
-            fn: function (done) {
+            fn: done => {
                 stylis('', css);
                 done.resolve();
             }
@@ -108,17 +108,17 @@ module.exports = {
     ]
 };
 
-var devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js');
-var devP = path.join(__dirname, '../postcss/build/lib/postcss.js');
+const devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js');
+const devP = path.join(__dirname, '../postcss/build/lib/postcss.js');
 if ( fs.existsSync(devA) && fs.existsSync(devP) ) {
-    var devAutoprefixer = require(devA);
-    var devPostcss      = require(devP);
-    var devProcessor    = devPostcss([devAutoprefixer]);
+    const devAutoprefixer = require(devA);
+    const devPostcss      = require(devP);
+    const devProcessor    = devPostcss([devAutoprefixer]);
     module.exports.tests.splice(0, 0, {
         name: 'Autoprefixer dev',
         defer: true,
-        fn: function (done) {
-            devProcessor.process(css, { map: false }).then(function () {
+        fn: done => {
+            devProcessor.process(css, { map: false }).then(() => {
                 done.resolve();
             });
         }
