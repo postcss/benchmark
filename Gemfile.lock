@@ -16,10 +16,10 @@ GEM
       sass (>= 3.2, < 3.5)
     ffi (1.9.18)
     multi_json (1.12.1)
-    rb-fsevent (0.9.8)
-    rb-inotify (0.9.8)
-      ffi (>= 0.5.0)
-    sass (3.4.23)
+    rb-fsevent (0.10.1)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
+    sass (3.4.24)
 
 PLATFORMS
   ruby
@@ -29,4 +29,4 @@ DEPENDENCIES
   sass
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
