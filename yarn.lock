@@ -3216,6 +3216,22 @@ stylecow-plugin-variables@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/stylecow-plugin-variables/-/stylecow-plugin-variables-5.1.1.tgz#cc3fe3cd8004c670ab0eb264919d3e5c3ffa34f4"
 
+stylis-calc@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/stylis-calc/-/stylis-calc-0.0.1.tgz#45d1ef0ceee6daef218a7956945d82629a9bf6bb"
+
+stylis-custom-properties@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/stylis-custom-properties/-/stylis-custom-properties-0.0.3.tgz#122e13bb06f5980539537e2260cc542e4b05bc51"
+
+stylis-mixin@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/stylis-mixin/-/stylis-mixin-0.0.1.tgz#69222bec6dce98c6def191e5712a15ae7cea2d6b"
+
+stylis@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.2.0.tgz#13a84d4c44d9c31f7ff231626a53135daa87c440"
+
 stylus@0.54.5, stylus@^0.54.5:
   version "0.54.5"
   resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.54.5.tgz#42b9560931ca7090ce8515a798ba9e6aa3d6dc79"
