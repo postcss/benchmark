@@ -39,8 +39,10 @@ var styl = '@import \'nib\';\n' + css
 var scss = '@import \'compass/css3\';\n' + css
     .replace(/([^-])transform:([^;}]+)(;|})/g, '$1@include transform($2)$3')
     .replace(/transition:([^;}]+)(;|})/g, '@include transition($1)$2')
-    .replace(/background(-image)?:((linear|radial)([^;}]+))(;|})/g,
-            '@include background($2)$5')
+    .replace(
+        /background(-image)?:((linear|radial)([^;}]+))(;|})/g,
+        '@include background($2)$5'
+    )
     .replace(/box-sizing:([^;}]+)(;|})/g, '@include box-sizing($1)$2');
 var scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss');
 fs.writeFileSync(scssFile, scss);
