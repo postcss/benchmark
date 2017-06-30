@@ -104,7 +104,8 @@ for ( i = 0; i < 100; i++ ) {
 }
 
 // Stylis
-var stylis = require('stylis');
+var Stylis = require('stylis');
+var stylis = new Stylis();
 var styi = css;
 styi += ':root { --size: 100px; }';
 for ( i = 0; i < 100; i++ ) {
@@ -113,6 +114,12 @@ for ( i = 0; i < 100; i++ ) {
     styi += 'h1 { width: calc(2 * var(--size)); }';
     styi += '.search { fill: black; width: 16px; height: 16px; }';
 }
+
+stylis.use([
+    require('stylis-mixin'),
+    require('stylis-calc'),
+    require('stylis-custom-properties')
+]);
 
 module.exports = {
     name: 'Bootstrap',

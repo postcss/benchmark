@@ -29,7 +29,8 @@ var gonzales   = require('gonzales');
 var parserlib  = require('parserlib');
 var gonzalesPe = require('gonzales-pe');
 var csstree    = require('css-tree');
-var stylis     = require('stylis');
+var Stylis     = require('stylis');
+var stylis     = new Stylis();
 
 module.exports = {
     name: 'Bootstrap',
