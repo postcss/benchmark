@@ -1,9 +1,10 @@
 /* Results on node 7.10.0, Fedora 25, Intel Core i7-6500U, 8 GB RAM and SSD:
 
-Autoprefixer: 51 ms
-Stylecow:     294 ms  (5.7 times slower)
-nib:          313 ms  (6.1 times slower)
-Compass:      3298 ms (64.4 times slower)
+Stylis:       15 ms   (3.5 times faster)
+Autoprefixer: 53 ms
+nib:          282 ms  (5.4 times slower)
+Stylecow:     291 ms  (5.5 times slower)
+Compass:      3315 ms (63.1 times slower)
 */
 
 const exec = require('child_process').exec;
