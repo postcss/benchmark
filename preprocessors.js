@@ -109,11 +109,12 @@ const Stylis = require('stylis');
 const stylisObj = new Stylis();
 let styi = css;
 styi += ':root { --size: 100px; }';
+styi += '@mixin icon { width: 16px; height: 16px; }';
 for ( i = 0; i < 100; i++ ) {
     styi += 'body h1 a { color: black; }';
     styi += 'h2 { width: var(--size); }';
     styi += 'h1 { width: calc(2 * var(--size)); }';
-    styi += '.search { fill: black; width: 16px; height: 16px; }';
+    styi += '.search { fill: black; @include icon; }';
 }
 
 stylisObj.use([
