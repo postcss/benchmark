@@ -32,14 +32,14 @@ gulp.task('bootstrap', done => {
     });
 });
 
-['preprocessors', 'parsers'].forEach(name => {
+['preprocessors', 'parsers', 'prefixers'].forEach(name => {
     gulp.task(name, ['bootstrap'], () => {
         const bench   = require('gulp-bench');
         const summary = require('gulp-bench-summary');
         return gulp.src(`./${ name }.js`, { read: false })
             .pipe(bench())
-            .pipe(summary('PostCSS'));
+            .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'));
     });
 });
 
-gulp.task('default', sequence('lint', 'preprocessors', 'parsers'));
+gulp.task('default', sequence('lint', 'preprocessors', 'parsers', 'prefixers'));
