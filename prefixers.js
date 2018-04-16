@@ -4,10 +4,8 @@ Stylis:       15 ms   (3.5 times faster)
 Autoprefixer: 53 ms
 nib:          282 ms  (5.4 times slower)
 Stylecow:     291 ms  (5.5 times slower)
-Compass:      3315 ms (63.1 times slower)
 */
 
-const exec = require('child_process').exec;
 const path = require('path');
 const fs   = require('fs');
 
@@ -85,17 +83,6 @@ module.exports = {
                         if ( err ) throw err;
                         done.resolve();
                     });
-            }
-        },
-        {
-            name: 'Compass',
-            defer: true,
-            fn: done => {
-                const cmd = 'sass -C --compass --sourcemap=none ' + scssFile;
-                exec('bundle exec ' + cmd, (err, stdout, stderr) => {
-                    if ( err ) throw stderr;
-                    done.resolve();
-                });
             }
         },
         {

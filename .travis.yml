@@ -1,8 +1,4 @@
 language: node_js
-cache:
-  - yarn
-  - bundler
+cache: yarn
 node_js:
   - node
-before_script:
-  - bundle install

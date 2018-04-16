@@ -19,7 +19,6 @@ libsass:   100 ms  (2.1 times slower)
 Stylus:    169 ms  (3.4 times slower)
 Less:      171 ms  (3.5 times slower)
 Stylecow:  298 ms  (6.1 times slower)
-Ruby Sass: 1779 ms (36.4 times slower)
 ```
 
 To get results on your environment:
@@ -68,7 +67,6 @@ Stylis:       15 ms   (3.5 times faster)
 Autoprefixer: 53 ms
 nib:          282 ms  (5.4 times slower)
 Stylecow:     291 ms  (5.5 times slower)
-Compass:      3315 ms (63.1 times slower)
 ```
 
 To get results on your environment:

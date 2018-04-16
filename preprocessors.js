@@ -7,10 +7,8 @@ libsass:   100 ms  (2.1 times slower)
 Stylus:    169 ms  (3.4 times slower)
 Less:      171 ms  (3.5 times slower)
 Stylecow:  298 ms  (6.1 times slower)
-Ruby Sass: 1779 ms (36.4 times slower)
 */
 
-const exec = require('child_process').exec;
 const path = require('path');
 const fs   = require('fs');
 
@@ -177,17 +175,6 @@ module.exports = {
             fn: done => {
                 less.render(lcss, err => {
                     if ( err ) throw err;
-                    done.resolve();
-                });
-            }
-        },
-        {
-            name: 'Ruby Sass',
-            defer: true,
-            fn: done => {
-                const command = 'sass -C --sourcemap=none ' + scssFile;
-                exec('bundle exec ' + command, (err, stdout, stderr) => {
-                    if ( err ) throw stderr;
                     done.resolve();
                 });
             }
