@@ -1,12 +1,12 @@
-/* Results on node 7.10.0, Fedora 25, Intel Core i7-6500U, 8 GB RAM and SSD:
+/* Results on node 9.11.1, Fedora 28, Intel Core i7-8550U, 16 GB RAM and SSD:
 
-Stylis:    30 ms   (1.6 times faster)
-PostCSS:   49 ms
-Rework:    67 ms   (1.4 times slower)
-libsass:   100 ms  (2.1 times slower)
-Stylus:    169 ms  (3.4 times slower)
-Less:      171 ms  (3.5 times slower)
-Stylecow:  298 ms  (6.1 times slower)
+Stylis:   16 ms  (1.9 times faster)
+PostCSS:  31 ms
+Rework:   44 ms  (1.4 times slower)
+libsass:  66 ms  (2.1 times slower)
+Less:     102 ms (3.3 times slower)
+Stylus:   108 ms (3.5 times slower)
+Stylecow: 162 ms (5.2 times slower)
 */
 
 const path = require('path');

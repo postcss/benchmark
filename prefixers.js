@@ -1,9 +1,9 @@
-/* Results on node 7.10.0, Fedora 25, Intel Core i7-6500U, 8 GB RAM and SSD:
+/* Results on node 9.11.1, Fedora 28, Intel Core i7-8550U, 16 GB RAM and SSD:
 
-Stylis:       15 ms   (3.5 times faster)
-Autoprefixer: 53 ms
-nib:          282 ms  (5.4 times slower)
-Stylecow:     291 ms  (5.5 times slower)
+Stylis:       12 ms  (2.8 times faster)
+Autoprefixer: 35 ms
+Stylecow:     121 ms (3.5 times slower)
+nib:          195 ms (5.6 times slower)
 */
 
 const path = require('path');

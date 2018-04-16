@@ -2,8 +2,8 @@
 
 Various benchmarks to have feedback about [PostCSS] perfomance.
 
-All results below was runned on node 7.10.0, Fedora 25, Intel Core i7-6500U,
-8 GB RAM and SSD:
+All results below was runned on node 9.11.1, Fedora 28, Intel Core i7-8550U,
+16 GB RAM and SSD:
 
 [PostCSS]: https://github.com/postcss/postcss
 
@@ -12,13 +12,13 @@ All results below was runned on node 7.10.0, Fedora 25, Intel Core i7-6500U,
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
-Stylis:    30 ms   (1.6 times faster)
-PostCSS:   49 ms
-Rework:    67 ms   (1.4 times slower)
-libsass:   100 ms  (2.1 times slower)
-Stylus:    169 ms  (3.4 times slower)
-Less:      171 ms  (3.5 times slower)
-Stylecow:  298 ms  (6.1 times slower)
+Stylis:   16 ms  (1.9 times faster)
+PostCSS:  31 ms
+Rework:   44 ms  (1.4 times slower)
+libsass:  66 ms  (2.1 times slower)
+Less:     102 ms (3.3 times slower)
+Stylus:   108 ms (3.5 times slower)
+Stylecow: 162 ms (5.2 times slower)
 ```
 
 To get results on your environment:
@@ -36,17 +36,17 @@ npm test preprocessors
 Compare [CSS parsers] written on JS:
 
 ```
-CSSTree:      6 ms   (4.8 times faster)
-Stylis:       12 ms  (2.3 times faster)
-PostCSS:      29 ms
-CSSOM:        29 ms  (1.0 times slower)
-Mensch:       31 ms  (1.1 times slower)
-Rework:       51 ms  (1.8 times slower)
-PostCSS Full: 72 ms  (2.5 times slower)
-Gonzales:     113 ms (3.9 times slower)
-Stylecow:     143 ms (5.0 times slower)
-Gonzales PE:  156 ms (5.4 times slower)
-ParserLib:    344 ms (11.9 times slower)
+CSSTree:      7 ms   (2.2 times faster)
+Stylis:       10 ms  (1.6 times faster)
+CSSOM:        13 ms  (1.2 times faster)
+PostCSS:      16 ms
+Mensch:       22 ms  (1.4 times slower)
+Rework:       30 ms  (1.9 times slower)
+Stylecow:     42 ms  (2.7 times slower)
+PostCSS Full: 45 ms  (2.9 times slower)
+Gonzales PE:  91 ms  (5.8 times slower)
+Gonzales:     92 ms  (5.9 times slower)
+ParserLib:    143 ms (9.1 times slower)
 ```
 
 To get results on your environment:
@@ -63,10 +63,10 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
-Stylis:       15 ms   (3.5 times faster)
-Autoprefixer: 53 ms
-nib:          282 ms  (5.4 times slower)
-Stylecow:     291 ms  (5.5 times slower)
+Stylis:       12 ms  (2.8 times faster)
+Autoprefixer: 35 ms
+Stylecow:     121 ms (3.5 times slower)
+nib:          195 ms (5.6 times slower)
 ```
 
 To get results on your environment:
