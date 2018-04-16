@@ -58,9 +58,9 @@ module.exports = {
                 const root = postcss.parse(css, { from: example });
                 root.walk(node => {
                     if ( node.type === 'rule' ) {
-                        node.selector = postcssSP.process(node.selector);
+                        node.selectorAST = postcssSP.process(node.selector);
                     } else if ( node.type === 'decl' ) {
-                        node.value = postcssVP(node.value);
+                        node.valueAST = postcssVP(node.value);
                     }
                 });
                 root.toResult();

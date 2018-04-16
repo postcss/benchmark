@@ -58,7 +58,9 @@ module.exports = {
             name: 'Autoprefixer',
             defer: true,
             fn: done => {
-                processor.process(css, { map: false }).then(() => {
+                processor.process(css, {
+                    from: example, map: false
+                }).then(() => {
                     done.resolve();
                 });
             }
@@ -106,7 +108,9 @@ if ( fs.existsSync(devA) && fs.existsSync(devP) ) {
         name: 'Autoprefixer dev',
         defer: true,
         fn: done => {
-            devProcessor.process(css, { map: false }).then(() => {
+            devProcessor.process(css, {
+                from: example, map: false
+            }).then(() => {
                 done.resolve();
             });
         }

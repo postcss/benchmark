@@ -144,7 +144,9 @@ module.exports = {
             name: 'PostCSS',
             defer: true,
             fn: done => {
-                processor.process(pcss, { map: false }).then(() => {
+                processor.process(pcss, {
+                    from: example, map: false
+                }).then(() => {
                     done.resolve();
                 });
             }
@@ -203,7 +205,9 @@ if ( fs.existsSync(devPath) ) {
         name: 'PostCSS dev',
         defer: true,
         fn: done => {
-            devProcessor.process(pcss, { map: false }).then(() => {
+            devProcessor.process(pcss, {
+                from: example, map: false
+            }).then(() => {
                 done.resolve();
             });
         }
