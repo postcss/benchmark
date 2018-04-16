@@ -12,13 +12,13 @@ All results below was runned on node 9.11.1, Fedora 28, Intel Core i7-8550U,
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
 
 ```
-Stylis:   16 ms  (1.9 times faster)
-PostCSS:  31 ms
-Rework:   44 ms  (1.4 times slower)
-libsass:  66 ms  (2.1 times slower)
-Less:     102 ms (3.3 times slower)
-Stylus:   108 ms (3.5 times slower)
-Stylecow: 162 ms (5.2 times slower)
+Stylis:   18 ms  (2.2 times faster)
+PostCSS:  41 ms
+Rework:   46 ms  (1.1 times slower)
+libsass:  81 ms  (2.0 times slower)
+Less:     106 ms (2.6 times slower)
+Stylus:   108 ms (2.6 times slower)
+Stylecow: 155 ms (3.8 times slower)
 ```
 
 To get results on your environment:
@@ -36,17 +36,17 @@ npm test preprocessors
 Compare [CSS parsers] written on JS:
 
 ```
-CSSTree:      7 ms   (2.2 times faster)
-Stylis:       10 ms  (1.6 times faster)
-CSSOM:        13 ms  (1.2 times faster)
+CSSTree:      5 ms   (3.3 times faster)
+Stylis:       9 ms   (1.9 times faster)
+CSSOM:        12 ms  (1.3 times faster)
 PostCSS:      16 ms
 Mensch:       22 ms  (1.4 times slower)
-Rework:       30 ms  (1.9 times slower)
-Stylecow:     42 ms  (2.7 times slower)
-PostCSS Full: 45 ms  (2.9 times slower)
-Gonzales PE:  91 ms  (5.8 times slower)
-Gonzales:     92 ms  (5.9 times slower)
-ParserLib:    143 ms (9.1 times slower)
+Rework:       30 ms  (1.8 times slower)
+Stylecow:     41 ms  (2.6 times slower)
+PostCSS Full: 52 ms  (3.2 times slower)
+Gonzales:     81 ms  (5.0 times slower)
+Gonzales PE:  94 ms  (5.8 times slower)
+ParserLib:    140 ms (8.7 times slower)
 ```
 
 To get results on your environment:
@@ -63,10 +63,10 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
-Stylis:       12 ms  (2.8 times faster)
-Autoprefixer: 35 ms
-Stylecow:     121 ms (3.5 times slower)
-nib:          195 ms (5.6 times slower)
+Stylis:       11 ms  (2.8 times faster)
+Autoprefixer: 32 ms
+Stylecow:     122 ms (3.8 times slower)
+nib:          196 ms (6.1 times slower)
 ```
 
 To get results on your environment:
