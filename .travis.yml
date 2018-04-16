@@ -3,6 +3,6 @@ cache:
   - yarn
   - bundler
 node_js:
-  - stable
+  - node
 before_script:
   - bundle install
