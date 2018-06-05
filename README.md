@@ -25,7 +25,6 @@ To get results on your environment:
 
 ```sh
 npm install
-bundle install
 npm test preprocessors
 ```
 
