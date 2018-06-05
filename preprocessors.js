@@ -127,7 +127,14 @@ module.exports = {
     maxTime: 15,
     tests: [
         {
-            name: 'libsass',
+            name: 'LibSass',
+            defer: true,
+            fn: done => {
+                libsass.render({ data: scss }, () => done.resolve());
+            }
+        },
+        {
+            name: 'LibSass sync',
             fn: () => {
                 libsass.renderSync({ data: scss });
             }
