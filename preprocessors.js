@@ -79,6 +79,9 @@ for ( i = 0; i < 100; i++ ) {
 const scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss');
 fs.writeFileSync(scssFile, scss);
 
+// Dart Sass
+const sass = require('sass');
+
 // Stylus
 const stylus = require('stylus');
 let styl = css;
@@ -127,9 +130,29 @@ module.exports = {
     maxTime: 15,
     tests: [
         {
-            name: 'libsass',
+            name: 'LibSass',
+            defer: true,
+            fn: done => {
+                libsass.render({ data: scss }, () => done.resolve());
+            }
+        },
+        {
+            name: 'LibSass sync',
             fn: () => {
                 libsass.renderSync({ data: scss });
+            }
+        },
+        {
+            name: 'Dart Sass',
+            defer: true,
+            fn: done => {
+                sass.render({ data: scss }, () => done.resolve());
+            }
+        },
+        {
+            name: 'Dart Sass sync',
+            fn: () => {
+                sass.renderSync({ data: scss });
             }
         },
         {
