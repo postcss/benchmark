@@ -3963,6 +3963,10 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
+sass@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.5.1.tgz#5ac0ce58eb90f67378b0f77270e40b3422788510"
+
 sax@0.5.x:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"

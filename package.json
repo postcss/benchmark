@@ -31,6 +31,7 @@
     "postcss-value-parser": "^3.3.0",
     "pre-commit": "^1.2.2",
     "rework": "^1.0.1",
+    "sass": "^1.5.1",
     "stylecow-core": "^2.5.0",
     "stylecow-plugin-calc": "^2.0.0",
     "stylecow-plugin-nested-rules": "^5.0.1",
