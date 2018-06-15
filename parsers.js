@@ -1,16 +1,16 @@
-/* Results on node 9.11.1, Fedora 28, Intel Core i7-8550U, 16 GB RAM and SSD:
+/* Results on node 10.4.1, Fedora 28, Intel Core i7-8550U, 16 GB RAM and SSD:
 
-CSSTree:      5 ms   (3.3 times faster)
-Stylis:       9 ms   (1.9 times faster)
-CSSOM:        12 ms  (1.3 times faster)
-PostCSS:      16 ms
-Mensch:       22 ms  (1.4 times slower)
-Rework:       30 ms  (1.8 times slower)
-Stylecow:     41 ms  (2.6 times slower)
-PostCSS Full: 52 ms  (3.2 times slower)
-Gonzales:     81 ms  (5.0 times slower)
-Gonzales PE:  94 ms  (5.8 times slower)
-ParserLib:    140 ms (8.7 times slower)
+CSSTree:      5 ms  (3.2 times faster)
+Stylis:       6 ms  (2.8 times faster)
+CSSOM:        14 ms (1.3 times faster)
+PostCSS:      18 ms
+Mensch:       21 ms (1.2 times slower)
+Rework:       26 ms (1.5 times slower)
+Stylecow:     41 ms (2.3 times slower)
+PostCSS Full: 70 ms (3.9 times slower)
+Gonzales:     92 ms (5.2 times slower)
+Gonzales PE:  94 ms (5.3 times slower)
+ParserLib:    96 ms (5.4 times slower)
 */
 
 const path = require('path')
