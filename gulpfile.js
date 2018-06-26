@@ -32,7 +32,7 @@ gulp.task('bootstrap', done => {
   })
 });
 
-['preprocessors', 'parsers', 'prefixers'].forEach(name => {
+['preprocessors', 'parsers', 'prefixers', 'tokenizers'].forEach(name => {
   gulp.task(name, ['bootstrap'], () => {
     const bench = require('gulp-bench')
     const summary = require('gulp-bench-summary')
@@ -42,4 +42,5 @@ gulp.task('bootstrap', done => {
   })
 })
 
-gulp.task('default', sequence('lint', 'preprocessors', 'parsers', 'prefixers'))
+gulp.task('default',
+  sequence('lint', 'preprocessors', 'parsers', 'prefixers', 'tokenizers'))
