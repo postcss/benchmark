@@ -12,20 +12,20 @@ Dart Sass:      169 ms (4.8 times slower)
 Stylecow:       199 ms (5.6 times slower)
 */
 
-const path = require('path')
-const fs = require('fs')
+let path = require('path')
+let fs = require('fs')
 
-const example = path.join(__dirname, 'cache', 'bootstrap.css')
-const origin = fs.readFileSync(example).toString()
+let example = path.join(__dirname, 'cache', 'bootstrap.css')
+let origin = fs.readFileSync(example).toString()
 let i
 
-const css = origin
+let css = origin
   .replace(/\s+filter:[^;}]+;?/g, '')
   .replace('/*# sourceMappingURL=bootstrap.css.map */', '')
 
 // PostCSS
-const postcss = require('postcss')
-const processor = postcss([
+let postcss = require('postcss')
+let processor = postcss([
   require('postcss-nested'),
   require('postcss-simple-vars'),
   require('postcss-calc'),
@@ -42,7 +42,7 @@ for (i = 0; i < 100; i++) {
 }
 
 // Myth
-const myth = require('myth')
+let myth = require('myth')
 let rcss = css
 rcss += ':root { --size: 100px; }'
 for (i = 0; i < 100; i++) {
@@ -53,9 +53,9 @@ for (i = 0; i < 100; i++) {
 }
 
 // Stylecow
-const stylecow = require('stylecow-core')
-const stylecowOut = new stylecow.Coder()
-const stylecower = new stylecow.Tasks()
+let stylecow = require('stylecow-core')
+let stylecowOut = new stylecow.Coder()
+let stylecower = new stylecow.Tasks()
 stylecower.use(require('stylecow-plugin-nested-rules'))
 stylecower.use(require('stylecow-plugin-variables'))
 stylecower.use(require('stylecow-plugin-calc'))
@@ -69,7 +69,7 @@ for (i = 0; i < 100; i++) {
 }
 
 // Sass
-const libsass = require('node-sass')
+let libsass = require('node-sass')
 let scss = css
 scss += '$size: 100px;'
 scss += '@mixin icon { width: 16px; height: 16px; }'
@@ -79,14 +79,14 @@ for (i = 0; i < 100; i++) {
   scss += 'h1 { width: 2 * $size; }'
   scss += '.search { fill: black; @include icon; }'
 }
-const scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
+let scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
 fs.writeFileSync(scssFile, scss)
 
 // Dart Sass
-const sass = require('sass')
+let sass = require('sass')
 
 // Stylus
-const stylus = require('stylus')
+let stylus = require('stylus')
 let styl = css
 styl += 'size = 100px;'
 styl += 'icon() { width: 16px; height: 16px; }'
@@ -98,7 +98,7 @@ for (i = 0; i < 100; i++) {
 }
 
 // Less
-const less = require('less')
+let less = require('less')
 let lcss = css
 lcss += '@size: 100px;'
 lcss += '.icon() { width: 16px; height: 16px; }'
@@ -110,8 +110,8 @@ for (i = 0; i < 100; i++) {
 }
 
 // Stylis
-const Stylis = require('stylis')
-const stylisObj = new Stylis()
+let Stylis = require('stylis')
+let stylisObj = new Stylis()
 let styi = css
 styi += ':root { --size: 100px; }'
 styi += '@mixin icon { width: 16px; height: 16px; }'
@@ -181,7 +181,7 @@ module.exports = {
       name: 'Stylecow',
       defer: true,
       fn: done => {
-        const code = stylecow.parse(cowcss)
+        let code = stylecow.parse(cowcss)
         stylecower.run(code)
         stylecowOut.run(code)
         done.resolve()
@@ -218,10 +218,10 @@ module.exports = {
   ]
 }
 
-const devPath = path.join(__dirname, '../postcss/build/lib/postcss.js')
+let devPath = path.join(__dirname, '../postcss/build/lib/postcss.js')
 if (fs.existsSync(devPath)) {
-  const devPostcss = require(devPath)
-  const devProcessor = devPostcss([
+  let devPostcss = require(devPath)
+  let devProcessor = devPostcss([
     require('postcss-nested'),
     require('postcss-simple-vars'),
     require('postcss-calc'),

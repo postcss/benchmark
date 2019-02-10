@@ -1,12 +1,12 @@
-const path = require('path')
-const fs = require('fs')
+let path = require('path')
+let fs = require('fs')
 
-const example = path.join(__dirname, 'cache', 'bootstrap.css')
-const css = fs.readFileSync(example).toString()
+let example = path.join(__dirname, 'cache', 'bootstrap.css')
+let css = fs.readFileSync(example).toString()
 
-const tokenize = require('postcss/lib/tokenize')
-const Input = require('postcss/lib/input')
-const input = new Input(css)
+let tokenize = require('postcss/lib/tokenize')
+let Input = require('postcss/lib/input')
+let input = new Input(css)
 
 module.exports = {
   name: 'Bootstrap',
@@ -16,7 +16,7 @@ module.exports = {
       name: 'PostCSS',
       defer: true,
       fn: done => {
-        const t = tokenize(input)
+        let t = tokenize(input)
         while (!t.endOfFile()) t.nextToken()
         done.resolve()
       }
@@ -24,14 +24,14 @@ module.exports = {
   ]
 }
 
-const devPath = path.join(__dirname, '../postcss/build/lib/tokenize.js')
+let devPath = path.join(__dirname, '../postcss/build/lib/tokenize.js')
 if (fs.existsSync(devPath)) {
-  const devTokenize = require(devPath)
+  let devTokenize = require(devPath)
   module.exports.tests.splice(1, 0, {
     name: 'PostCSS dev',
     defer: true,
     fn: done => {
-      const t = devTokenize(input)
+      let t = devTokenize(input)
       while (!t.endOfFile()) t.nextToken()
       done.resolve()
     }

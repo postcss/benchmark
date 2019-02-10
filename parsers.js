@@ -13,25 +13,25 @@ Gonzales PE:  94 ms (5.3 times slower)
 ParserLib:    96 ms (5.4 times slower)
 */
 
-const path = require('path')
-const fs = require('fs')
+let path = require('path')
+let fs = require('fs')
 
-const example = path.join(__dirname, 'cache', 'bootstrap.css')
-const css = fs.readFileSync(example).toString()
+let example = path.join(__dirname, 'cache', 'bootstrap.css')
+let css = fs.readFileSync(example).toString()
 
-const CSSOM = require('cssom')
-const rework = require('rework')
-const mensch = require('mensch')
-const postcss = require('postcss')
-const postcssSP = require('postcss-selector-parser')()
-const postcssVP = require('postcss-value-parser')
-const stylecow = require('stylecow-core')
-const gonzales = require('gonzales')
-const parserlib = require('parserlib')
-const gonzalesPe = require('gonzales-pe')
-const csstree = require('css-tree')
-const Stylis = require('stylis')
-const stylis = new Stylis()
+let CSSOM = require('cssom')
+let rework = require('rework')
+let mensch = require('mensch')
+let postcss = require('postcss')
+let postcssSP = require('postcss-selector-parser')()
+let postcssVP = require('postcss-value-parser')
+let stylecow = require('stylecow-core')
+let gonzales = require('gonzales')
+let parserlib = require('parserlib')
+let gonzalesPe = require('gonzales-pe')
+let csstree = require('css-tree')
+let Stylis = require('stylis')
+let stylis = new Stylis()
 
 module.exports = {
   name: 'Bootstrap',
@@ -55,7 +55,7 @@ module.exports = {
       name: 'PostCSS Full',
       defer: true,
       fn: done => {
-        const root = postcss.parse(css, { from: example })
+        let root = postcss.parse(css, { from: example })
         root.walk(node => {
           if (node.type === 'rule') {
             node.selectorAST = postcssSP.process(node.selector)
@@ -118,9 +118,9 @@ module.exports = {
   ]
 }
 
-const devPath = path.join(__dirname, '../postcss/build/lib/postcss.js')
+let devPath = path.join(__dirname, '../postcss/build/lib/postcss.js')
 if (fs.existsSync(devPath)) {
-  const devPostcss = require(devPath)
+  let devPostcss = require(devPath)
   module.exports.tests.splice(1, 0, {
     name: 'PostCSS dev',
     defer: true,

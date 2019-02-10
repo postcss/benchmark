@@ -6,28 +6,28 @@ Stylecow:     157 ms (4.6 times slower)
 nib:          176 ms (5.1 times slower)
 */
 
-const path = require('path')
-const fs = require('fs')
+let path = require('path')
+let fs = require('fs')
 
-const example = path.join(__dirname, 'cache', 'bootstrap.css')
-const origin = fs.readFileSync(example).toString()
+let example = path.join(__dirname, 'cache', 'bootstrap.css')
+let origin = fs.readFileSync(example).toString()
 
 // Autoprefixer
-const autoprefixer = require('autoprefixer')
-const postcss = require('postcss')
+let autoprefixer = require('autoprefixer')
+let postcss = require('postcss')
 
-const css = postcss([autoprefixer({ browsers: [] })]).process(origin).css
-const processor = postcss([autoprefixer])
+let css = postcss([autoprefixer({ browsers: [] })]).process(origin).css
+let processor = postcss([autoprefixer])
 
 // Stylecow
-const stylecow = require('stylecow-core')
-const stylecowOut = new stylecow.Coder()
-const stylecower = new stylecow.Tasks()
+let stylecow = require('stylecow-core')
+let stylecowOut = new stylecow.Coder()
+let stylecower = new stylecow.Tasks()
 stylecower.use(require('stylecow-plugin-prefixes'))
 
 // nib
-const stylus = require('stylus')
-const styl = '@import \'nib\';\n' + css
+let stylus = require('stylus')
+let styl = '@import \'nib\';\n' + css
   .replace('@charset "UTF-8";', '')
   .replace(/\}/g, '}\n').replace(/(\w)\[[^\]]+\]/g, '$1')
   .replace(/filter:[^;}]+;?/ig, '')
@@ -35,7 +35,7 @@ const styl = '@import \'nib\';\n' + css
   .replace(/url\([^)]+\)/ig, 'white')
 
 // Compass
-const scss = '@import \'compass/css3\';\n' + css
+let scss = '@import \'compass/css3\';\n' + css
   .replace(/([^-])transform:([^;}]+)(;|})/g, '$1@include transform($2)$3')
   .replace(/transition:([^;}]+)(;|})/g, '@include transition($1)$2')
   .replace(
@@ -43,12 +43,12 @@ const scss = '@import \'compass/css3\';\n' + css
     '@include background($2)$5'
   )
   .replace(/box-sizing:([^;}]+)(;|})/g, '@include box-sizing($1)$2')
-const scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss')
+let scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss')
 fs.writeFileSync(scssFile, scss)
 
 // Stylis
-const Stylis = require('stylis')
-const stylis = new Stylis()
+let Stylis = require('stylis')
+let stylis = new Stylis()
 
 module.exports = {
   name: 'Bootstrap',
@@ -69,7 +69,7 @@ module.exports = {
       name: 'Stylecow',
       defer: true,
       fn: done => {
-        const code = stylecow.parse(css)
+        let code = stylecow.parse(css)
         stylecower.run(code)
         stylecowOut.run(code)
         done.resolve()
@@ -98,12 +98,12 @@ module.exports = {
   ]
 }
 
-const devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js')
-const devP = path.join(__dirname, '../postcss/build/lib/postcss.js')
+let devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js')
+let devP = path.join(__dirname, '../postcss/build/lib/postcss.js')
 if (fs.existsSync(devA) && fs.existsSync(devP)) {
-  const devAutoprefixer = require(devA)
-  const devPostcss = require(devP)
-  const devProcessor = devPostcss([devAutoprefixer])
+  let devAutoprefixer = require(devA)
+  let devPostcss = require(devP)
+  let devProcessor = devPostcss([devAutoprefixer])
   module.exports.tests.splice(0, 0, {
     name: 'Autoprefixer dev',
     defer: true,
