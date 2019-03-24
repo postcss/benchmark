@@ -87,6 +87,7 @@ let sass = require('sass')
 
 // Stylus
 let stylus = require('stylus')
+let stylusErrored = false
 let styl = css
 styl += 'size = 100px;'
 styl += 'icon() { width: 16px; height: 16px; }'
@@ -99,6 +100,7 @@ for (i = 0; i < 100; i++) {
 
 // Less
 let less = require('less')
+let lessErrored = false
 let lcss = css
 lcss += '@size: 100px;'
 lcss += '.icon() { width: 16px; height: 16px; }'
@@ -192,7 +194,10 @@ module.exports = {
       defer: true,
       fn: done => {
         stylus.render(styl, { filename: example }, err => {
-          if (err) throw err
+          if (err && !stylusErrored) {
+            console.error('Failed to pass test', err)
+            stylusErrored = true
+          }
           done.resolve()
         })
       }
@@ -202,7 +207,10 @@ module.exports = {
       defer: true,
       fn: done => {
         less.render(lcss, err => {
-          if (err) throw err
+          if (err && !lessErrored) {
+            console.error('Failed to pass test', err)
+            lessErrored = true
+          }
           done.resolve()
         })
       }
