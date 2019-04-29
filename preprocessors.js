@@ -12,7 +12,19 @@ Dart Sass:      169 ms (4.8 times slower)
 Stylecow:       199 ms (5.6 times slower)
 */
 
+let postcssSimpleVars = require('postcss-simple-vars')
+let postcssNested = require('postcss-nested')
+let postcssMixins = require('postcss-mixins')
+let postcssCalc = require('postcss-calc')
+let stylecow = require('stylecow-core')
+let postcss = require('postcss')
+let libsass = require('node-sass')
+let stylus = require('stylus')
+let Stylis = require('stylis')
+let sass = require('sass')
+let myth = require('myth')
 let path = require('path')
+let less = require('less')
 let fs = require('fs')
 
 let example = path.join(__dirname, 'cache', 'bootstrap.css')
@@ -24,12 +36,11 @@ let css = origin
   .replace('/*# sourceMappingURL=bootstrap.css.map */', '')
 
 // PostCSS
-let postcss = require('postcss')
 let processor = postcss([
-  require('postcss-nested'),
-  require('postcss-simple-vars'),
-  require('postcss-calc'),
-  require('postcss-mixins')
+  postcssNested,
+  postcssSimpleVars,
+  postcssCalc,
+  postcssMixins
 ])
 let pcss = css
 pcss += '$size: 100px;'
@@ -42,7 +53,6 @@ for (i = 0; i < 100; i++) {
 }
 
 // Myth
-let myth = require('myth')
 let rcss = css
 rcss += ':root { --size: 100px; }'
 for (i = 0; i < 100; i++) {
@@ -53,7 +63,6 @@ for (i = 0; i < 100; i++) {
 }
 
 // Stylecow
-let stylecow = require('stylecow-core')
 let stylecowOut = new stylecow.Coder()
 let stylecower = new stylecow.Tasks()
 stylecower.use(require('stylecow-plugin-nested-rules'))
@@ -69,7 +78,6 @@ for (i = 0; i < 100; i++) {
 }
 
 // Sass
-let libsass = require('node-sass')
 let scss = css
 scss += '$size: 100px;'
 scss += '@mixin icon { width: 16px; height: 16px; }'
@@ -82,11 +90,7 @@ for (i = 0; i < 100; i++) {
 let scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
 fs.writeFileSync(scssFile, scss)
 
-// Dart Sass
-let sass = require('sass')
-
 // Stylus
-let stylus = require('stylus')
 let styl = css
 styl += 'size = 100px;'
 styl += 'icon() { width: 16px; height: 16px; }'
@@ -98,7 +102,6 @@ for (i = 0; i < 100; i++) {
 }
 
 // Less
-let less = require('less')
 let lcss = css
 lcss += '@size: 100px;'
 lcss += '.icon() { width: 16px; height: 16px; }'
@@ -110,7 +113,6 @@ for (i = 0; i < 100; i++) {
 }
 
 // Stylis
-let Stylis = require('stylis')
 let stylisObj = new Stylis()
 let styi = css
 styi += ':root { --size: 100px; }'

@@ -6,6 +6,12 @@ Stylecow:     157 ms (4.6 times slower)
 nib:          176 ms (5.1 times slower)
 */
 
+let stylecowPrefixes = require('stylecow-plugin-prefixes')
+let autoprefixer = require('autoprefixer')
+let stylecow = require('stylecow-core')
+let postcss = require('postcss')
+let Stylis = require('stylis')
+let stylus = require('stylus')
 let path = require('path')
 let fs = require('fs')
 
@@ -13,20 +19,16 @@ let example = path.join(__dirname, 'cache', 'bootstrap.css')
 let origin = fs.readFileSync(example).toString()
 
 // Autoprefixer
-let autoprefixer = require('autoprefixer')
-let postcss = require('postcss')
 
 let css = postcss([autoprefixer({ browsers: [] })]).process(origin).css
 let processor = postcss([autoprefixer])
 
 // Stylecow
-let stylecow = require('stylecow-core')
 let stylecowOut = new stylecow.Coder()
 let stylecower = new stylecow.Tasks()
-stylecower.use(require('stylecow-plugin-prefixes'))
+stylecower.use(stylecowPrefixes)
 
 // nib
-let stylus = require('stylus')
 let styl = '@import \'nib\';\n' + css
   .replace('@charset "UTF-8";', '')
   .replace(/\}/g, '}\n').replace(/(\w)\[[^\]]+\]/g, '$1')
@@ -34,20 +36,7 @@ let styl = '@import \'nib\';\n' + css
   .replace(/(@keyframes[^{]+)\{/ig, '$1 {')
   .replace(/url\([^)]+\)/ig, 'white')
 
-// Compass
-let scss = '@import \'compass/css3\';\n' + css
-  .replace(/([^-])transform:([^;}]+)(;|})/g, '$1@include transform($2)$3')
-  .replace(/transition:([^;}]+)(;|})/g, '@include transition($1)$2')
-  .replace(
-    /background(-image)?:((linear|radial)([^;}]+))(;|})/g,
-    '@include background($2)$5'
-  )
-  .replace(/box-sizing:([^;}]+)(;|})/g, '@include box-sizing($1)$2')
-let scssFile = path.join(__dirname, 'cache/bootstrap.prefixers.scss')
-fs.writeFileSync(scssFile, scss)
-
 // Stylis
-let Stylis = require('stylis')
 let stylis = new Stylis()
 
 module.exports = {

@@ -13,24 +13,24 @@ Gonzales PE:  94 ms (5.3 times slower)
 ParserLib:    96 ms (5.4 times slower)
 */
 
+let gonzalesPe = require('gonzales-pe')
+let postcssSP = require('postcss-selector-parser')
+let postcssVP = require('postcss-value-parser')
+let parserlib = require('parserlib')
+let stylecow = require('stylecow-core')
+let gonzales = require('gonzales')
+let csstree = require('css-tree')
+let postcss = require('postcss')
+let rework = require('rework')
+let mensch = require('mensch')
+let Stylis = require('stylis')
+let CSSOM = require('cssom')
 let path = require('path')
 let fs = require('fs')
 
 let example = path.join(__dirname, 'cache', 'bootstrap.css')
 let css = fs.readFileSync(example).toString()
 
-let CSSOM = require('cssom')
-let rework = require('rework')
-let mensch = require('mensch')
-let postcss = require('postcss')
-let postcssSP = require('postcss-selector-parser')()
-let postcssVP = require('postcss-value-parser')
-let stylecow = require('stylecow-core')
-let gonzales = require('gonzales')
-let parserlib = require('parserlib')
-let gonzalesPe = require('gonzales-pe')
-let csstree = require('css-tree')
-let Stylis = require('stylis')
 let stylis = new Stylis()
 
 module.exports = {
@@ -58,7 +58,7 @@ module.exports = {
         let root = postcss.parse(css, { from: example })
         root.walk(node => {
           if (node.type === 'rule') {
-            node.selectorAST = postcssSP.process(node.selector)
+            node.selectorAST = postcssSP().process(node.selector)
           } else if (node.type === 'decl') {
             node.valueAST = postcssVP(node.value)
           }
