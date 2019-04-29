@@ -1,11 +1,11 @@
+let tokenize = require('postcss/lib/tokenize')
+let Input = require('postcss/lib/input')
 let path = require('path')
 let fs = require('fs')
 
 let example = path.join(__dirname, 'cache', 'bootstrap.css')
 let css = fs.readFileSync(example).toString()
 
-let tokenize = require('postcss/lib/tokenize')
-let Input = require('postcss/lib/input')
 let input = new Input(css)
 
 module.exports = {
