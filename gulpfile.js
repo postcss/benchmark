@@ -1,6 +1,6 @@
+let { existsSync, outputFile, remove } = require('fs-extra')
+let { join } = require('path')
 let gulp = require('gulp')
-let path = require('path')
-let fs = require('fs-extra')
 
 // Lint
 
@@ -15,19 +15,19 @@ gulp.task('lint', () => {
 // Benchmark
 
 gulp.task('clean', done => {
-  fs.remove(path.join(__dirname, '/cache'), done)
+  remove(join(__dirname, '/cache'), done)
 })
 
 gulp.task('bootstrap', done => {
-  let cache = path.join(__dirname, 'cache', 'bootstrap.css')
-  if (fs.existsSync(cache)) {
+  let cache = join(__dirname, 'cache', 'bootstrap.css')
+  if (existsSync(cache)) {
     done()
     return
   }
 
   let load = require('load-resources')
   load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', css => {
-    fs.outputFile(cache, css, done)
+    outputFile(cache, css, done)
   })
 });
 
