@@ -6,17 +6,17 @@ Stylecow:     157 ms (4.6 times slower)
 nib:          176 ms (5.1 times slower)
 */
 
+let { existsSync, readFileSync } = require('fs')
 let stylecowPrefixes = require('stylecow-plugin-prefixes')
 let autoprefixer = require('autoprefixer')
 let stylecow = require('stylecow-core')
+let { join } = require('path')
 let postcss = require('postcss')
 let Stylis = require('stylis')
 let stylus = require('stylus')
-let path = require('path')
-let fs = require('fs')
 
-let example = path.join(__dirname, 'cache', 'bootstrap.css')
-let origin = fs.readFileSync(example).toString()
+let example = join(__dirname, 'cache', 'bootstrap.css')
+let origin = readFileSync(example).toString()
 
 // Autoprefixer
 let css = postcss([autoprefixer({ browsers: [] })]).process(origin).css
@@ -86,9 +86,9 @@ module.exports = {
   ]
 }
 
-let devA = path.join(__dirname, '../autoprefixer/build/lib/autoprefixer.js')
-let devP = path.join(__dirname, '../postcss/build/lib/postcss.js')
-if (fs.existsSync(devA) && fs.existsSync(devP)) {
+let devA = join(__dirname, '../autoprefixer/build/lib/autoprefixer.js')
+let devP = join(__dirname, '../postcss/lib/postcss.js')
+if (existsSync(devA) && existsSync(devP)) {
   let devAutoprefixer = require(devA)
   let devPostcss = require(devP)
   let devProcessor = devPostcss([devAutoprefixer])

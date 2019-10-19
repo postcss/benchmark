@@ -12,23 +12,23 @@ Dart Sass:      169 ms (4.8 times slower)
 Stylecow:       199 ms (5.6 times slower)
 */
 
+let { readFileSync, writeFileSync, existsSync } = require('fs')
 let postcssSimpleVars = require('postcss-simple-vars')
 let postcssNested = require('postcss-nested')
 let postcssMixins = require('postcss-mixins')
 let postcssCalc = require('postcss-calc')
 let stylecow = require('stylecow-core')
+let { join } = require('path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
 let stylus = require('stylus')
 let Stylis = require('stylis')
 let sass = require('sass')
 let myth = require('myth')
-let path = require('path')
 let less = require('less')
-let fs = require('fs')
 
-let example = path.join(__dirname, 'cache', 'bootstrap.css')
-let origin = fs.readFileSync(example).toString()
+let example = join(__dirname, 'cache', 'bootstrap.css')
+let origin = readFileSync(example).toString()
 let i
 
 let css = origin
@@ -87,8 +87,8 @@ for (i = 0; i < 100; i++) {
   scss += 'h1 { width: 2 * $size; }'
   scss += '.search { fill: black; @include icon; }'
 }
-let scssFile = path.join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
-fs.writeFileSync(scssFile, scss)
+let scssFile = join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
+writeFileSync(scssFile, scss)
 
 // Stylus
 let styl = css
@@ -220,8 +220,8 @@ module.exports = {
   ]
 }
 
-let devPath = path.join(__dirname, '../postcss/build/lib/postcss.js')
-if (fs.existsSync(devPath)) {
+let devPath = join(__dirname, '../postcss/lib/postcss.js')
+if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   let devProcessor = devPostcss([
     require('postcss-nested'),

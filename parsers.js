@@ -13,23 +13,23 @@ Gonzales PE:  94 ms (5.3 times slower)
 ParserLib:    96 ms (5.4 times slower)
 */
 
+let { readFileSync, existsSync } = require('fs')
 let gonzalesPe = require('gonzales-pe')
 let postcssSP = require('postcss-selector-parser')
 let postcssVP = require('postcss-value-parser')
 let parserlib = require('parserlib')
 let stylecow = require('stylecow-core')
 let gonzales = require('gonzales')
+let { join } = require('path')
 let csstree = require('css-tree')
 let postcss = require('postcss')
 let rework = require('rework')
 let mensch = require('mensch')
 let Stylis = require('stylis')
 let CSSOM = require('cssom')
-let path = require('path')
-let fs = require('fs')
 
-let example = path.join(__dirname, 'cache', 'bootstrap.css')
-let css = fs.readFileSync(example).toString()
+let example = join(__dirname, 'cache', 'bootstrap.css')
+let css = readFileSync(example).toString()
 
 let stylis = new Stylis()
 
@@ -118,8 +118,8 @@ module.exports = {
   ]
 }
 
-let devPath = path.join(__dirname, '../postcss')
-if (fs.existsSync(devPath)) {
+let devPath = join(__dirname, '../postcss')
+if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   module.exports.tests.splice(1, 0, {
     name: 'PostCSS dev',
