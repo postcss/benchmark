@@ -118,7 +118,7 @@ module.exports = {
   ]
 }
 
-let devPath = join(__dirname, '../postcss')
+let devPath = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   module.exports.tests.splice(1, 0, {
