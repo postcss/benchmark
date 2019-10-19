@@ -16,7 +16,6 @@ Stylis:         13 ms  (2.7 times faster)
 PostCSS:        35 ms
 Rework:         38 ms  (1.1 times slower)
 LibSass sync:   82 ms  (2.3 times slower)
-Stylus:         87 ms  (2.5 times slower)
 LibSass:        90 ms  (2.5 times slower)
 Less:           91 ms  (2.6 times slower)
 Dart Sass sync: 103 ms (2.9 times slower)

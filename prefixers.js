@@ -13,27 +13,19 @@ let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
 let Stylis = require('stylis')
-let stylus = require('stylus')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')
 let origin = readFileSync(example).toString()
 
 // Autoprefixer
-let css = postcss([autoprefixer({ browsers: [] })]).process(origin).css
+let cleaner = postcss([autoprefixer({ overrideBrowserslist: [] })])
+let css = cleaner.process(origin, { from: example }).css
 let processor = postcss([autoprefixer])
 
 // Stylecow
 let stylecowOut = new stylecow.Coder()
 let stylecower = new stylecow.Tasks()
 stylecower.use(stylecowPrefixes)
-
-// nib
-let styl = '@import \'nib\';\n' + css
-  .replace('@charset "UTF-8";', '')
-  .replace(/\}/g, '}\n').replace(/(\w)\[[^\]]+\]/g, '$1')
-  .replace(/filter:[^;}]+;?/ig, '')
-  .replace(/(@keyframes[^{]+)\{/ig, '$1 {')
-  .replace(/url\([^)]+\)/ig, 'white')
 
 // Stylis
 let stylis = new Stylis()
@@ -61,18 +53,6 @@ module.exports = {
         stylecower.run(code)
         stylecowOut.run(code)
         done.resolve()
-      }
-    },
-    {
-      name: 'nib',
-      defer: true,
-      fn: done => {
-        stylus(styl)
-          .include(require('nib').path)
-          .render(err => {
-            if (err) throw err
-            done.resolve()
-          })
       }
     },
     {

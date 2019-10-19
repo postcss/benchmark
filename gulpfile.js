@@ -2,20 +2,10 @@ let { existsSync, outputFile, remove } = require('fs-extra')
 let { join } = require('path')
 let gulp = require('gulp')
 
-// Lint
-
-gulp.task('lint', () => {
-  let eslint = require('gulp-eslint')
-  return gulp.src(['*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-})
-
 // Benchmark
 
 gulp.task('clean', done => {
-  remove(join(__dirname, '/cache'), done)
+  remove(join(__dirname, 'cache'), done)
 })
 
 gulp.task('bootstrap', done => {
@@ -42,4 +32,5 @@ gulp.task('bootstrap', done => {
 })
 
 gulp.task('default',
-  gulp.series('lint', 'preprocessors', 'parsers', 'prefixers', 'tokenizers'))
+  gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers')
+)

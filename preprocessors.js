@@ -4,7 +4,6 @@ Stylis:         13 ms  (2.7 times faster)
 PostCSS:        35 ms
 Rework:         38 ms  (1.1 times slower)
 LibSass sync:   82 ms  (2.3 times slower)
-Stylus:         87 ms  (2.5 times slower)
 LibSass:        90 ms  (2.5 times slower)
 Less:           91 ms  (2.6 times slower)
 Dart Sass sync: 103 ms (2.9 times slower)
@@ -21,7 +20,6 @@ let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
-let stylus = require('stylus')
 let Stylis = require('stylis')
 let sass = require('sass')
 let myth = require('myth')
@@ -89,17 +87,6 @@ for (i = 0; i < 100; i++) {
 }
 let scssFile = join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
 writeFileSync(scssFile, scss)
-
-// Stylus
-let styl = css
-styl += 'size = 100px;'
-styl += 'icon() { width: 16px; height: 16px; }'
-for (i = 0; i < 100; i++) {
-  styl += 'body { h1 { a { color: black; } } }'
-  styl += 'h2 { width: size; }'
-  styl += 'h1 { width: 2 * size; }'
-  styl += '.search { fill: black; icon(); }'
-}
 
 // Less
 let lcss = css
@@ -190,20 +177,10 @@ module.exports = {
       }
     },
     {
-      name: 'Stylus',
-      defer: true,
-      fn: done => {
-        stylus.render(styl, { filename: example }, err => {
-          if (err) throw err
-          done.resolve()
-        })
-      }
-    },
-    {
       name: 'Less',
       defer: true,
       fn: done => {
-        less.render(lcss, err => {
+        less.render(lcss, { math: 'strict' }, err => {
           if (err) throw err
           done.resolve()
         })
