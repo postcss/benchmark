@@ -1,5 +1,5 @@
-let { existsSync, createWriteStream, remove } = require('fs-extra')
-let { join } = require('path')
+let { existsSync, createWriteStream, remove, mkdirp } = require('fs-extra')
+let { join, dirname } = require('path')
 let { get } = require('https')
 let gulp = require('gulp')
 
@@ -9,25 +9,25 @@ gulp.task('clean', done => {
   remove(join(__dirname, 'cache'), done)
 })
 
-gulp.task('bootstrap', done => {
+gulp.task('bootstrap', async () => {
   let cache = join(__dirname, 'cache', 'bootstrap.css')
-  if (existsSync(cache)) {
-    done()
-    return
-  }
-
-  get(
-    'https://raw.githubusercontent.com/' +
-      'twbs/bootstrap/main/dist/css/bootstrap.css',
-    res => {
-      if (res.statusCode !== 200) {
-        throw new Error(`Failed to get Bootstrap: ${res.statusCode}`)
+  await mkdirp(dirname(cache))
+  if (existsSync(cache)) return
+  await new Promise((resolve, reject) => {
+    let file = createWriteStream(cache)
+    file.on('finish', () => resolve())
+    get(
+      'https://raw.githubusercontent.com/' +
+        'twbs/bootstrap/main/dist/css/bootstrap.css',
+      res => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`Failed to get Bootstrap: ${res.statusCode}`))
+          return
+        }
+        res.pipe(file)
       }
-      let file = createWriteStream(cache)
-      file.on('finish', done)
-      res.pipe(file)
-    }
-  )
+    )
+  })
 })
 
 for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers']) {
