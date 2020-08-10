@@ -1,5 +1,6 @@
-let { existsSync, outputFile, remove } = require('fs-extra')
+let { existsSync, createWriteStream, remove } = require('fs-extra')
 let { join } = require('path')
+let { get } = require('https')
 let gulp = require('gulp')
 
 // Benchmark
@@ -15,22 +16,35 @@ gulp.task('bootstrap', done => {
     return
   }
 
-  let load = require('load-resources')
-  load('github:twbs/bootstrap:dist/css/bootstrap.css', '.css', css => {
-    outputFile(cache, css, done)
-  })
-});
-
-['preprocessors', 'parsers', 'prefixers', 'tokenizers'].forEach(name => {
-  gulp.task(name, gulp.series('bootstrap', () => {
-    let bench = require('gulp-bench')
-    let summary = require('gulp-bench-summary')
-    return gulp.src(`./${ name }.js`, { read: false })
-      .pipe(bench())
-      .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'))
-  }))
+  get(
+    'https://raw.githubusercontent.com/' +
+      'twbs/bootstrap/main/dist/css/bootstrap.css',
+    res => {
+      if (res.statusCode !== 200) {
+        throw new Error(`Failed to get Bootstrap: ${res.statusCode}`)
+      }
+      let file = createWriteStream(cache)
+      file.on('finish', done)
+      res.pipe(file)
+    }
+  )
 })
 
-gulp.task('default',
+for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers']) {
+  gulp.task(
+    name,
+    gulp.series('bootstrap', () => {
+      let bench = require('gulp-bench')
+      let summary = require('gulp-bench-summary')
+      return gulp
+        .src(`./${name}.js`, { read: false })
+        .pipe(bench())
+        .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'))
+    })
+  )
+}
+
+gulp.task(
+  'default',
   gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers')
 )

@@ -8,7 +8,6 @@ LibSass:        90 ms  (2.5 times slower)
 Less:           91 ms  (2.6 times slower)
 Dart Sass sync: 103 ms (2.9 times slower)
 Dart Sass:      169 ms (4.8 times slower)
-Stylecow:       199 ms (5.6 times slower)
 */
 
 let { readFileSync, writeFileSync, existsSync } = require('fs')
@@ -16,7 +15,6 @@ let postcssSimpleVars = require('postcss-simple-vars')
 let postcssNested = require('postcss-nested')
 let postcssMixins = require('postcss-mixins')
 let postcssCalc = require('postcss-calc')
-let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
@@ -58,21 +56,6 @@ for (i = 0; i < 100; i++) {
   rcss += 'h2 { width: var(--size); }'
   rcss += 'h1 { width: calc(2 * var(--size)); }'
   rcss += '.search { fill: black; width: 16px; height: 16px; }'
-}
-
-// Stylecow
-let stylecowOut = new stylecow.Coder()
-let stylecower = new stylecow.Tasks()
-stylecower.use(require('stylecow-plugin-nested-rules'))
-stylecower.use(require('stylecow-plugin-variables'))
-stylecower.use(require('stylecow-plugin-calc'))
-let cowcss = css
-cowcss += ':root { --size: 100px; }'
-for (i = 0; i < 100; i++) {
-  cowcss += 'body { h1 { a { color: black; } } }'
-  cowcss += 'h2 { width: var(--size); }'
-  cowcss += 'h1 { width: calc(2 * var(--size)); }'
-  cowcss += '.search { fill: black; width: 16px; height: 16px; }'
 }
 
 // Sass
@@ -151,7 +134,7 @@ module.exports = {
       name: 'Rework',
       defer: true,
       fn: done => {
-        myth(rcss, { features: { prefixes: false } })
+        myth(rcss, { features: { prefixes: false, variables: false } })
         done.resolve()
       }
     },
@@ -159,21 +142,14 @@ module.exports = {
       name: 'PostCSS',
       defer: true,
       fn: done => {
-        processor.process(pcss, {
-          from: example, map: false
-        }).then(() => {
-          done.resolve()
-        })
-      }
-    },
-    {
-      name: 'Stylecow',
-      defer: true,
-      fn: done => {
-        let code = stylecow.parse(cowcss)
-        stylecower.run(code)
-        stylecowOut.run(code)
-        done.resolve()
+        processor
+          .process(pcss, {
+            from: example,
+            map: false
+          })
+          .then(() => {
+            done.resolve()
+          })
       }
     },
     {
@@ -210,11 +186,14 @@ if (existsSync(devPath)) {
     name: 'PostCSS dev',
     defer: true,
     fn: done => {
-      devProcessor.process(pcss, {
-        from: example, map: false
-      }).then(() => {
-        done.resolve()
-      })
+      devProcessor
+        .process(pcss, {
+          from: example,
+          map: false
+        })
+        .then(() => {
+          done.resolve()
+        })
     }
   })
 }

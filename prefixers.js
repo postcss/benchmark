@@ -38,11 +38,14 @@ module.exports = {
       name: 'Autoprefixer',
       defer: true,
       fn: done => {
-        processor.process(css, {
-          from: example, map: false
-        }).then(() => {
-          done.resolve()
-        })
+        processor
+          .process(css, {
+            from: example,
+            map: false
+          })
+          .then(() => {
+            done.resolve()
+          })
       }
     },
     {
@@ -76,11 +79,14 @@ if (existsSync(devA) && existsSync(devP)) {
     name: 'Autoprefixer dev',
     defer: true,
     fn: done => {
-      devProcessor.process(css, {
-        from: example, map: false
-      }).then(() => {
-        done.resolve()
-      })
+      devProcessor
+        .process(css, {
+          from: example,
+          map: false
+        })
+        .then(() => {
+          done.resolve()
+        })
     }
   })
 }

@@ -100,7 +100,7 @@ module.exports = {
     {
       name: 'ParserLib',
       fn: () => {
-        (new parserlib.css.Parser()).parse(css)
+        new parserlib.css.Parser().parse(css)
       }
     },
     {

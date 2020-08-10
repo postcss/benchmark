@@ -7,6 +7,7 @@ All results below was runned on node 10.4.1, Fedora 28, Intel Core i7-8550U,
 
 [PostCSS]: https://github.com/postcss/postcss
 
+
 ## Preprocessors
 
 Compare [CSS processors] for parsings, nested rules, mixins, variables and math:
@@ -20,7 +21,6 @@ LibSass:        90 ms  (2.5 times slower)
 Less:           91 ms  (2.6 times slower)
 Dart Sass sync: 103 ms (2.9 times slower)
 Dart Sass:      169 ms (4.8 times slower)
-Stylecow:       199 ms (5.6 times slower)
 ```
 
 To get results on your environment:
@@ -31,6 +31,7 @@ npm test preprocessors
 ```
 
 [CSS processors]: https://github.com/postcss/benchmark/blob/master/preprocessors.js
+
 
 ## Parsers
 
@@ -58,6 +59,7 @@ npm test parsers
 ```
 
 [CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
+
 
 ## Prefixers
 

@@ -1,34 +1,32 @@
 {
   "private": true,
   "scripts": {
-    "lint-staged": "lint-staged",
     "test": "eslint . && gulp"
   },
   "dependencies": {
-    "autoprefixer": "^9.6.5",
+    "autoprefixer": "^9.8.6",
     "css-tree": "^1.0.0-alpha14",
-    "cssom": "^0.4.1",
-    "fs-extra": "^8.1.0",
+    "cssom": "^0.4.4",
+    "fs-extra": "^9.0.1",
     "gonzales": "^1.0.7",
-    "gonzales-pe": "^4.2.4",
+    "gonzales-pe": "^4.3.0",
     "gulp": "^4.0.2",
     "gulp-bench": "^1.1.0",
     "gulp-bench-summary": "^0.1.0",
-    "less": "^3.10.3",
-    "load-resources": "^0.1.1",
-    "mensch": "^0.3.3",
+    "less": "^3.12.2",
+    "mensch": "^0.3.4",
     "myth": "^1.5.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "parserlib": "^1.1.1",
-    "postcss": "^7.0.18",
-    "postcss-calc": "^7.0.1",
-    "postcss-mixins": "^6.2.2",
-    "postcss-nested": "^4.1.2",
+    "postcss": "^7.0.32",
+    "postcss-calc": "^7.0.3",
+    "postcss-mixins": "^6.2.3",
+    "postcss-nested": "^4.2.3",
     "postcss-selector-parser": "^6.0.2",
     "postcss-simple-vars": "^5.0.2",
-    "postcss-value-parser": "^4.0.2",
+    "postcss-value-parser": "^4.1.0",
     "rework": "^1.0.1",
-    "sass": "^1.23.0",
+    "sass": "^1.26.10",
     "stylecow-core": "^2.5.0",
     "stylecow-plugin-calc": "^2.0.0",
     "stylecow-plugin-nested-rules": "^5.0.1",
@@ -38,37 +36,38 @@
     "stylis-calc": "^0.0.1",
     "stylis-custom-properties": "^0.0.4",
     "stylis-mixin": "^0.0.1",
-    "through2": "^3.0.1"
+    "through2": "^4.0.2"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^33.0.0",
-    "@logux/sharec-config": "^0.5.4",
-    "eslint": "^6.5.1",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-es5": "^1.4.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.19.0",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prefer-let": "^1.0.1",
+    "@logux/eslint-config": "^40.0.1",
+    "@logux/sharec-config": "^0.7.4",
+    "eslint": "^7.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-es5": "^1.5.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-let": "^1.0.2",
+    "eslint-plugin-prettierx": "^0.12.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^12.1.0",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2"
+    "eslint-plugin-unicorn": "^21.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "eslintConfig": {
-    "extends": "@logux/eslint-config/node",
+    "extends": "@logux/eslint-config",
     "rules": {
       "security/detect-non-literal-require": "off",
-      "global-require": "off"
+      "node/global-require": "off"
     }
   },
   "lint-staged": {
-    "*.js": "eslint"
+    "*.js": "eslint --fix"
   },
   "husky": {
     "hooks": {
@@ -77,6 +76,6 @@
   },
   "sharec": {
     "config": "@logux/sharec-config",
-    "version": "0.5.4"
+    "version": "0.7.4"
   }
 }
