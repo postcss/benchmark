@@ -69,7 +69,7 @@ module.exports = {
   ]
 }
 
-let devA = join(__dirname, '../autoprefixer/build/lib/autoprefixer.js')
+let devA = join(__dirname, '../autoprefixer/lib/autoprefixer.js')
 let devP = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devA) && existsSync(devP)) {
   let devAutoprefixer = require(devA)
