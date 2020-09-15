@@ -1,13 +1,13 @@
-/* Results on node 10.4.1, Fedora 28, Intel Core i7-8550U, 16 GB RAM and SSD:
+/* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
 
-Stylis:         13 ms  (2.7 times faster)
-PostCSS:        35 ms
-Rework:         38 ms  (1.1 times slower)
-LibSass sync:   82 ms  (2.3 times slower)
-LibSass:        90 ms  (2.5 times slower)
-Less:           91 ms  (2.6 times slower)
-Dart Sass sync: 103 ms (2.9 times slower)
-Dart Sass:      169 ms (4.8 times slower)
+PostCSS sync:   27 ms  (1.1 times faster)
+PostCSS:        30 ms
+Rework:         33 ms  (1.1 times slower)
+LibSass sync:   64 ms  (2.1 times slower)
+LibSass:        66 ms  (2.2 times slower)
+Dart Sass sync: 77 ms  (2.6 times slower)
+Dart Sass:      138 ms (4.5 times slower)
+Less:           410 ms (13.5 times slower)
 */
 
 let { readFileSync, writeFileSync, existsSync } = require('fs')

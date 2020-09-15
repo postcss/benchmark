@@ -1,3 +1,11 @@
+/* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
+
+Walk sync API      0.60 ops/sec
+Visitor sync API   0.79 ops/sec
+Walk async API     0.54 ops/sec
+Visitor async API  0.63 ops/sec
+ */
+
 let { readFileSync, readFile } = require('fs')
 let { promisify } = require('util')
 let { join } = require('path')
