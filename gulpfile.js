@@ -30,21 +30,31 @@ gulp.task('bootstrap', async () => {
   })
 })
 
-for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers']) {
+for (let name of [
+  'preprocessors',
+  'parsers',
+  'prefixers',
+  'tokenizers',
+  'apis'
+]) {
   gulp.task(
     name,
     gulp.series('bootstrap', () => {
       let bench = require('gulp-bench')
       let summary = require('gulp-bench-summary')
-      return gulp
-        .src(`./${name}.js`, { read: false })
-        .pipe(bench())
-        .pipe(summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS'))
+      let benchmark = gulp.src(`./${name}.js`, { read: false }).pipe(bench())
+      if (name === 'apis') {
+        return benchmark
+      } else {
+        return benchmark.pipe(
+          summary(name === 'prefixers' ? 'Autoprefixer' : 'PostCSS')
+        )
+      }
     })
   )
 }
 
 gulp.task(
   'default',
-  gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers')
+  gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers', 'apis')
 )

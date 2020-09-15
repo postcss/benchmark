@@ -14,11 +14,9 @@ let { readFileSync, writeFileSync, existsSync } = require('fs')
 let postcssSimpleVars = require('postcss-simple-vars')
 let postcssNested = require('postcss-nested')
 let postcssMixins = require('postcss-mixins')
-let postcssCalc = require('postcss-calc')
 let { join } = require('path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
-let Stylis = require('stylis')
 let sass = require('sass')
 let myth = require('myth')
 let less = require('less')
@@ -32,19 +30,13 @@ let css = origin
   .replace('/*# sourceMappingURL=bootstrap.css.map */', '')
 
 // PostCSS
-let processor = postcss([
-  postcssNested,
-  postcssSimpleVars,
-  postcssCalc,
-  postcssMixins
-])
+let processor = postcss([postcssNested, postcssSimpleVars, postcssMixins])
 let pcss = css
 pcss += '$size: 100px;'
 pcss += '@define-mixin icon { width: 16px; height: 16px; }'
 for (i = 0; i < 100; i++) {
   pcss += 'body { h1 { a { color: black; } } }'
   pcss += 'h2 { width: $size; }'
-  pcss += 'h1 { width: calc(2 * $size); }'
   pcss += '.search { fill: black; @mixin icon; }'
 }
 
@@ -54,7 +46,6 @@ rcss += ':root { --size: 100px; }'
 for (i = 0; i < 100; i++) {
   rcss += 'body h1 a { color: black; }'
   rcss += 'h2 { width: var(--size); }'
-  rcss += 'h1 { width: calc(2 * var(--size)); }'
   rcss += '.search { fill: black; width: 16px; height: 16px; }'
 }
 
@@ -65,7 +56,6 @@ scss += '@mixin icon { width: 16px; height: 16px; }'
 for (i = 0; i < 100; i++) {
   scss += 'body { h1 { a { color: black; } } }'
   scss += 'h2 { width: $size; }'
-  scss += 'h1 { width: 2 * $size; }'
   scss += '.search { fill: black; @include icon; }'
 }
 let scssFile = join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
@@ -78,30 +68,11 @@ lcss += '.icon() { width: 16px; height: 16px; }'
 for (i = 0; i < 100; i++) {
   lcss += 'body { h1 { a { color: black; } } }'
   lcss += 'h2 { width: @size; }'
-  lcss += 'h1 { width: 2 * @size; }'
   lcss += '.search { fill: black; .icon() }'
 }
 
-// Stylis
-let stylisObj = new Stylis()
-let styi = css
-styi += ':root { --size: 100px; }'
-styi += '@mixin icon { width: 16px; height: 16px; }'
-for (i = 0; i < 100; i++) {
-  styi += 'body h1 a { color: black; }'
-  styi += 'h2 { width: var(--size); }'
-  styi += 'h1 { width: calc(2 * var(--size)); }'
-  styi += '.search { fill: black; @include icon; }'
-}
-
-stylisObj.use([
-  require('stylis-mixin'),
-  require('stylis-calc'),
-  require('stylis-custom-properties')
-])
-
 module.exports = {
-  name: 'Bootstrap',
+  name: 'Preprocessors',
   maxTime: 15,
   tests: [
     {
@@ -142,14 +113,17 @@ module.exports = {
       name: 'PostCSS',
       defer: true,
       fn: done => {
-        processor
-          .process(pcss, {
-            from: example,
-            map: false
-          })
-          .then(() => {
-            done.resolve()
-          })
+        processor.process(pcss, { from: example, map: false }).then(() => {
+          done.resolve()
+        })
+      }
+    },
+    {
+      name: 'PostCSS sync',
+      defer: true,
+      fn: done => {
+        processor.process(pcss, { from: example, map: false }).css
+        done.resolve()
       }
     },
     {
@@ -161,14 +135,6 @@ module.exports = {
           done.resolve()
         })
       }
-    },
-    {
-      name: 'Stylis',
-      defer: true,
-      fn: done => {
-        stylisObj('', styi)
-        done.resolve()
-      }
     }
   ]
 }
@@ -177,23 +143,25 @@ let devPath = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   let devProcessor = devPostcss([
-    require('postcss-nested'),
-    require('postcss-simple-vars'),
-    require('postcss-calc'),
-    require('postcss-mixins')
+    require(join(__dirname, '../postcss-nested')),
+    require(join(__dirname, '../postcss-simple-vars')),
+    require(join(__dirname, '../postcss-mixins'))
   ])
   module.exports.tests.splice(6, 0, {
-    name: 'PostCSS dev',
+    name: 'Next PostCSS',
     defer: true,
     fn: done => {
-      devProcessor
-        .process(pcss, {
-          from: example,
-          map: false
-        })
-        .then(() => {
-          done.resolve()
-        })
+      devProcessor.process(pcss, { from: example, map: false }).then(() => {
+        done.resolve()
+      })
+    }
+  })
+  module.exports.tests.splice(8, 0, {
+    name: 'Next PostCSS sync',
+    defer: true,
+    fn: done => {
+      devProcessor.process(pcss, { from: example, map: false }).css
+      done.resolve()
     }
   })
 }

@@ -25,16 +25,14 @@ let csstree = require('css-tree')
 let postcss = require('postcss')
 let rework = require('rework')
 let mensch = require('mensch')
-let Stylis = require('stylis')
+let stylis = require('stylis')
 let CSSOM = require('cssom')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')
 let css = readFileSync(example).toString()
 
-let stylis = new Stylis()
-
 module.exports = {
-  name: 'Bootstrap',
+  name: 'Parsers',
   maxTime: 15,
   tests: [
     {
@@ -112,7 +110,7 @@ module.exports = {
     {
       name: 'Stylis',
       fn: () => {
-        stylis('', css)
+        stylis.compile(css)
       }
     }
   ]
@@ -122,7 +120,7 @@ let devPath = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   module.exports.tests.splice(1, 0, {
-    name: 'PostCSS dev',
+    name: 'Next PostCSS',
     defer: true,
     fn: done => {
       devPostcss.parse(css, { from: example }).toResult()

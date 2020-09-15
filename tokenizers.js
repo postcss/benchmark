@@ -9,7 +9,7 @@ let css = readFileSync(example).toString()
 let input = new Input(css)
 
 module.exports = {
-  name: 'Bootstrap',
+  name: 'Tokenizers',
   maxTime: 15,
   tests: [
     {
@@ -30,7 +30,7 @@ if (existsSync(devPath)) {
   let DevInput = require(join(__dirname, '../postcss/lib/input'))
   let devInput = new DevInput(css)
   module.exports.tests.splice(1, 0, {
-    name: 'PostCSS dev',
+    name: 'Next PostCSS',
     defer: true,
     fn: done => {
       let t = devTokenize(devInput)

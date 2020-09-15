@@ -4,7 +4,7 @@
     "test": "eslint . && gulp"
   },
   "dependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.0",
     "css-tree": "^1.0.0-alpha14",
     "cssom": "^0.4.4",
     "fs-extra": "^9.0.1",
@@ -18,12 +18,11 @@
     "myth": "^1.5.0",
     "node-sass": "^4.14.1",
     "parserlib": "^1.1.1",
-    "postcss": "^7.0.32",
-    "postcss-calc": "^7.0.3",
-    "postcss-mixins": "^6.2.3",
-    "postcss-nested": "^4.2.3",
+    "postcss": "^8.0.3",
+    "postcss-mixins": "^7.0.0",
+    "postcss-nested": "^5.0.0",
     "postcss-selector-parser": "^6.0.2",
-    "postcss-simple-vars": "^5.0.2",
+    "postcss-simple-vars": "^6.0.0",
     "postcss-value-parser": "^4.1.0",
     "rework": "^1.0.1",
     "sass": "^1.26.10",
@@ -32,29 +31,26 @@
     "stylecow-plugin-nested-rules": "^5.0.1",
     "stylecow-plugin-prefixes": "^6.0.5",
     "stylecow-plugin-variables": "^5.1.4",
-    "stylis": "^3.5.0",
-    "stylis-calc": "^0.0.1",
-    "stylis-custom-properties": "^0.0.4",
-    "stylis-mixin": "^0.0.1",
+    "stylis": "^4.0.3",
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^40.0.1",
+    "@logux/eslint-config": "^40.0.4",
     "@logux/sharec-config": "^0.7.4",
-    "eslint": "^7.6.0",
+    "eslint": "^7.9.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jest": "^24.0.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-let": "^1.0.2",
-    "eslint-plugin-prettierx": "^0.12.1",
+    "eslint-plugin-prefer-let": "^1.1.0",
+    "eslint-plugin-prettierx": "^0.14.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-unicorn": "^21.0.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -63,6 +59,7 @@
     "extends": "@logux/eslint-config",
     "rules": {
       "security/detect-non-literal-require": "off",
+      "no-unused-expressions": "off",
       "node/global-require": "off"
     }
   },

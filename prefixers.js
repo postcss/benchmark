@@ -12,7 +12,6 @@ let autoprefixer = require('autoprefixer')
 let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
-let Stylis = require('stylis')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')
 let origin = readFileSync(example).toString()
@@ -27,11 +26,8 @@ let stylecowOut = new stylecow.Coder()
 let stylecower = new stylecow.Tasks()
 stylecower.use(stylecowPrefixes)
 
-// Stylis
-let stylis = new Stylis()
-
 module.exports = {
-  name: 'Bootstrap',
+  name: 'Prefixers',
   maxTime: 15,
   tests: [
     {
@@ -55,14 +51,6 @@ module.exports = {
         let code = stylecow.parse(css)
         stylecower.run(code)
         stylecowOut.run(code)
-        done.resolve()
-      }
-    },
-    {
-      name: 'Stylis',
-      defer: true,
-      fn: done => {
-        stylis('', css)
         done.resolve()
       }
     }
