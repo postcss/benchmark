@@ -1,7 +1,7 @@
 /* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
 
 CSSTree:      4 ms  (3.9 times faster)
-Stylis:       4 ms  (3.5 times faster)
+Stylis:       5 ms  (3.1 times faster)
 PostCSS:      15 ms
 CSSOM:        16 ms (1.1 times slower)
 Mensch:       18 ms (1.2 times slower)
@@ -110,7 +110,7 @@ module.exports = {
     {
       name: 'Stylis',
       fn: () => {
-        stylis.compile(css)
+        stylis.serialize(stylis.compile(css), stylis.stringify)
       }
     }
   ]

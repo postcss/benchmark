@@ -1,5 +1,6 @@
 /* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
 
+Stylis:       7 ms   (4.9 times faster)
 Autoprefixer: 32 ms
 Stylecow:     187 ms (5.9 times slower)
 */
@@ -10,6 +11,7 @@ let autoprefixer = require('autoprefixer')
 let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
+let stylis = require('stylis')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')
 let origin = readFileSync(example).toString()
@@ -28,6 +30,15 @@ module.exports = {
   name: 'Prefixers',
   maxTime: 15,
   tests: [
+    {
+      name: 'Stylis',
+      fn: () => {
+        stylis.serialize(
+          stylis.compile(css),
+          stylis.middleware([stylis.prefixer, stylis.stringify])
+        )
+      }
+    },
     {
       name: 'Autoprefixer',
       defer: true,

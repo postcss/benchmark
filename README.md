@@ -39,7 +39,7 @@ Compare [CSS parsers] written on JS:
 
 ```
 CSSTree:      4 ms  (3.9 times faster)
-Stylis:       4 ms  (3.5 times faster)
+Stylis:       5 ms  (3.1 times faster)
 PostCSS:      15 ms
 CSSOM:        16 ms (1.1 times slower)
 Mensch:       18 ms (1.2 times slower)
@@ -66,6 +66,7 @@ npm test parsers
 Compare [vendor prefixes tools]:
 
 ```
+Stylis:       7 ms   (4.9 times faster)
 Autoprefixer: 32 ms
 Stylecow:     187 ms (5.9 times slower)
 ```
