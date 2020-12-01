@@ -80,23 +80,3 @@ npm test prefixers
 ```
 
 [vendor prefixes tools]: https://github.com/postcss/benchmark/blob/main/prefixers.js
-
-
-## PostCSS APIs
-
-Compare different way to write plugins for PostCSS:
-
-```
-Walk sync API      0.60 ops/sec
-Visitor sync API   0.79 ops/sec
-Walk async API     0.54 ops/sec
-Visitor async API  0.63 ops/sec
-```
-
-To get results on your environment:
-
-```sh
-npm install
-bundle install
-npm test apis
-```
