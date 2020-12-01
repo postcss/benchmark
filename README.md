@@ -30,7 +30,7 @@ npm install
 npm test preprocessors
 ```
 
-[CSS processors]: https://github.com/postcss/benchmark/blob/master/preprocessors.js
+[CSS processors]: https://github.com/postcss/benchmark/blob/main/preprocessors.js
 
 
 ## Parsers
@@ -58,7 +58,7 @@ npm install
 npm test parsers
 ```
 
-[CSS parsers]: https://github.com/postcss/benchmark/blob/master/parsers.js
+[CSS parsers]: https://github.com/postcss/benchmark/blob/main/parsers.js
 
 
 ## Prefixers
@@ -79,7 +79,7 @@ bundle install
 npm test prefixers
 ```
 
-[vendor prefixes tools]: https://github.com/postcss/benchmark/blob/master/prefixers.js
+[vendor prefixes tools]: https://github.com/postcss/benchmark/blob/main/prefixers.js
 
 
 ## PostCSS APIs
