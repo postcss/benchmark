@@ -143,9 +143,9 @@ let devPath = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   let devProcessor = devPostcss([
-    require(join(__dirname, '../postcss-nested')),
-    require(join(__dirname, '../postcss-simple-vars')),
-    require(join(__dirname, '../postcss-mixins'))
+    postcssNested,
+    postcssSimpleVars,
+    postcssMixins
   ])
   module.exports.tests.splice(6, 0, {
     name: 'Next PostCSS',
