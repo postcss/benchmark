@@ -92,7 +92,7 @@ module.exports = {
     {
       name: 'CSSTree',
       fn: () => {
-        csstree.translate(csstree.parse(css))
+        csstree.generate(csstree.parse(css))
       }
     },
     {
