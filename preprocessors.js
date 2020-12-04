@@ -1,13 +1,13 @@
-/* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
+/* Results on Node.js 15.2.1, Fedora 33, Intel Core i7-1065G7, and 16 GB RAM:
 
-PostCSS sync:   27 ms  (1.1 times faster)
-PostCSS:        30 ms
-Rework:         33 ms  (1.1 times slower)
-LibSass sync:   64 ms  (2.1 times slower)
-LibSass:        66 ms  (2.2 times slower)
-Dart Sass sync: 77 ms  (2.6 times slower)
-Dart Sass:      138 ms (4.5 times slower)
-Less:           410 ms (13.5 times slower)
+Rework:         33 ms  (1.2 times faster)
+PostCSS sync:   36 ms  (1.1 times faster)
+PostCSS:        38 ms
+Dart Sass sync: 66 ms  (1.7 times slower)
+LibSass sync:   68 ms  (1.8 times slower)
+LibSass:        69 ms  (1.8 times slower)
+Dart Sass:      130 ms (3.4 times slower)
+Less:           256 ms (6.7 times slower)
 */
 
 let { readFileSync, writeFileSync, existsSync } = require('fs')

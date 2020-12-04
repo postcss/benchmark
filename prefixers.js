@@ -1,8 +1,8 @@
-/* Results on Node 14.10.1, Fedora 32, Intel Core i7-1065G7, 16 GB RAM, and SSD:
+/* Results on Node.js 15.2.1, Fedora 33, Intel Core i7-1065G7, and 16 GB RAM:
 
-Stylis:       7 ms   (4.9 times faster)
-Autoprefixer: 32 ms
-Stylecow:     187 ms (5.9 times slower)
+Stylis:       8 ms   (5.1 times faster)
+Autoprefixer: 42 ms
+Stylecow:     343 ms (8.2 times slower)
 */
 
 let { existsSync, readFileSync } = require('fs')
