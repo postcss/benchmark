@@ -18,7 +18,7 @@
     "myth": "^1.5.0",
     "node-sass": "^5.0.0",
     "parserlib": "^1.1.1",
-    "postcss": "^8.1.14",
+    "postcss": "^8.2.10",
     "postcss-mixins": "^7.0.1",
     "postcss-nested": "^5.0.2",
     "postcss-selector-parser": "^6.0.4",
