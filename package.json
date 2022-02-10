@@ -16,7 +16,7 @@
     "less": "^3.12.2",
     "mensch": "^0.3.4",
     "myth": "^1.5.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "parserlib": "^1.1.1",
     "postcss": "^8.2.13",
     "postcss-mixins": "^7.0.1",
