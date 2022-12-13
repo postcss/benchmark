@@ -24,8 +24,8 @@ Dart Sass:      376 ms (4.8 times slower)
 To get results on your environment:
 
 ```sh
-npm install
-npm test preprocessors
+pnpm install
+pnpm test preprocessors
 ```
 
 [CSS processors]: https://github.com/postcss/benchmark/blob/main/preprocessors.js
@@ -51,8 +51,8 @@ Gonzales:     159 ms (4.8 times slower)
 To get results on your environment:
 
 ```sh
-npm install
-npm test parsers
+pnpm install
+pnpm test parsers
 ```
 
 [CSS parsers]: https://github.com/postcss/benchmark/blob/main/parsers.js
@@ -72,9 +72,8 @@ Stylecow:      835 ms (8.9 times slower)
 To get results on your environment:
 
 ```sh
-npm install
-bundle install
-npm test prefixers
+pnpm install
+pnpm test prefixers
 ```
 
 [vendor prefixes tools]: https://github.com/postcss/benchmark/blob/main/prefixers.js
