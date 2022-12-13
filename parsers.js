@@ -1,16 +1,15 @@
-/* Results on Node.js 15.2.1, Fedora 33, Intel Core i7-1065G7, and 16 GB RAM:
+/* Results on Node 19.2.0, GitHub Actions:
 
-Stylis:       5 ms  (3.1 times faster)
-CSSTree:      9 ms  (1.7 times faster)
-PostCSS:      16 ms
-CSSOM:        18 ms (1.2 times slower)
-Mensch:       21 ms (1.3 times slower)
-Rework:       27 ms (1.7 times slower)
-Stylecow:     39 ms (2.5 times slower)
-PostCSS Full: 67 ms (4.3 times slower)
-ParserLib:    74 ms (4.7 times slower)
-Gonzales:     74 ms (4.7 times slower)
-Gonzales PE:  82 ms (5.2 times slower)
+Stylis:       14 ms  (2.3 times faster)
+CSSOM:        22 ms  (1.5 times faster)
+CSSTree:      31 ms  (1.1 times faster)
+PostCSS:      33 ms
+Mensch:       33 ms  (1.0 times slower)
+Rework:       51 ms  (1.5 times slower)
+Stylecow:     66 ms  (2.0 times slower)
+PostCSS Full: 93 ms  (2.8 times slower)
+ParserLib:    141 ms (4.2 times slower)
+Gonzales:     159 ms (4.8 times slower)
 */
 
 let { readFileSync, existsSync } = require('fs')

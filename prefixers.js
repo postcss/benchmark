@@ -1,8 +1,9 @@
-/* Results on Node.js 15.2.1, Fedora 33, Intel Core i7-1065G7, and 16 GB RAM:
+/* Results on Node 19.2.0, GitHub Actions:
 
-Stylis:       8 ms   (5.1 times faster)
-Autoprefixer: 42 ms
-Stylecow:     343 ms (8.2 times slower)
+Lightning CSS: 12 ms  (7.9 times faster)
+Stylis:        18 ms  (5.2 times faster)
+Autoprefixer:  94 ms
+Stylecow:      835 ms (8.9 times slower)
 */
 
 let { existsSync, readFileSync } = require('fs')
