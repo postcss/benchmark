@@ -18,7 +18,6 @@ let { join } = require('path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
 let sass = require('sass')
-let myth = require('myth')
 let less = require('less')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')
@@ -38,15 +37,6 @@ for (i = 0; i < 100; i++) {
   pcss += 'body { h1 { a { color: black; } } }'
   pcss += 'h2 { width: $size; }'
   pcss += '.search { fill: black; @mixin icon; }'
-}
-
-// Myth
-let rcss = css
-rcss += ':root { --size: 100px; }'
-for (i = 0; i < 100; i++) {
-  rcss += 'body h1 a { color: black; }'
-  rcss += 'h2 { width: var(--size); }'
-  rcss += '.search { fill: black; width: 16px; height: 16px; }'
 }
 
 // Sass
@@ -99,14 +89,6 @@ module.exports = {
       name: 'Dart Sass sync',
       fn: () => {
         sass.renderSync({ data: scss })
-      }
-    },
-    {
-      name: 'Rework',
-      defer: true,
-      fn: done => {
-        myth(rcss, { features: { prefixes: false, variables: false } })
-        done.resolve()
       }
     },
     {
