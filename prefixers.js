@@ -8,6 +8,8 @@ Stylecow:     343 ms (8.2 times slower)
 let { existsSync, readFileSync } = require('fs')
 let stylecowPrefixes = require('stylecow-plugin-prefixes')
 let autoprefixer = require('autoprefixer')
+let browserslist = require('browserslist')
+let lightning = require('lightningcss')
 let stylecow = require('stylecow-core')
 let { join } = require('path')
 let postcss = require('postcss')
@@ -51,6 +53,20 @@ module.exports = {
           .then(() => {
             done.resolve()
           })
+      }
+    },
+    {
+      name: 'Lightning CSS',
+      fn: () => {
+        lightning
+          .transform({
+            filename: example,
+            code: Buffer.from(css),
+            targets: lightning.browserslistToTargets(browserslist('defaults')),
+            minify: false,
+            sourceMap: false
+          })
+          .code.toString()
       }
     },
     {
