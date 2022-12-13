@@ -14,7 +14,6 @@ Gonzales PE:  82 ms (5.2 times slower)
 */
 
 let { readFileSync, existsSync } = require('fs')
-let gonzalesPe = require('gonzales-pe')
 let postcssSP = require('postcss-selector-parser')
 let postcssVP = require('postcss-value-parser')
 let parserlib = require('parserlib')
@@ -81,12 +80,6 @@ module.exports = {
       name: 'Gonzales',
       fn: () => {
         gonzales.csspToSrc(gonzales.srcToCSSP(css))
-      }
-    },
-    {
-      name: 'Gonzales PE',
-      fn: () => {
-        gonzalesPe.parse(css).toString()
       }
     },
     {

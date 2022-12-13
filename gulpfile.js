@@ -1,17 +1,18 @@
-let { existsSync, createWriteStream, remove, mkdirp } = require('fs-extra')
+let { existsSync, createWriteStream } = require('fs')
 let { join, dirname } = require('path')
+let { rm, mkdir } = require('fs/promises')
 let { get } = require('https')
 let gulp = require('gulp')
 
 // Benchmark
 
-gulp.task('clean', done => {
-  remove(join(__dirname, 'cache'), done)
+gulp.task('clean', async () => {
+  await rm(join(__dirname, 'cache'), { recursive: true, force: true })
 })
 
 gulp.task('bootstrap', async () => {
   let cache = join(__dirname, 'cache', 'bootstrap.css')
-  await mkdirp(dirname(cache))
+  await mkdir(dirname(cache), { recursive: true })
   if (existsSync(cache)) return
   await new Promise((resolve, reject) => {
     let file = createWriteStream(cache)

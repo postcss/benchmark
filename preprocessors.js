@@ -62,7 +62,7 @@ let scssFile = join(__dirname, 'cache', 'bootstrap.preprocessors.scss')
 writeFileSync(scssFile, scss)
 
 // Less
-let lcss = css
+let lcss = css.replace(/--[-\w]+:\s*;/g, '')
 lcss += '@size: 100px;'
 lcss += '.icon() { width: 16px; height: 16px; }'
 for (i = 0; i < 100; i++) {
