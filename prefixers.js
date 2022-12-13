@@ -24,7 +24,7 @@ let browsers = browserslist('defaults')
 // Autoprefixer
 let cleaner = postcss([autoprefixer({ overrideBrowserslist: [] })])
 let css = cleaner.process(origin, { from: example }).css
-let processor = postcss([autoprefixer({ browsers })])
+let processor = postcss([autoprefixer({ overrideBrowserslist: browsers })])
 
 // Stylecow
 let stylecowOut = new stylecow.Coder()
