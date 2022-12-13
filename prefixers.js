@@ -19,15 +19,21 @@ let stylis = require('stylis')
 let example = join(__dirname, 'cache', 'bootstrap.css')
 let origin = readFileSync(example).toString()
 
+let browsers = browserslist('defaults')
+
 // Autoprefixer
 let cleaner = postcss([autoprefixer({ overrideBrowserslist: [] })])
 let css = cleaner.process(origin, { from: example }).css
-let processor = postcss([autoprefixer])
+let processor = postcss([autoprefixer({ browsers })])
 
 // Stylecow
 let stylecowOut = new stylecow.Coder()
 let stylecower = new stylecow.Tasks()
 stylecower.use(stylecowPrefixes)
+
+// Lightning
+let lightningBrowsers = lightning.browserslistToTargets(browsers)
+let cssBuffer = Buffer.from(css)
 
 module.exports = {
   name: 'Prefixers',
@@ -59,15 +65,13 @@ module.exports = {
     {
       name: 'Lightning CSS',
       fn: () => {
-        lightning
-          .transform({
-            filename: example,
-            code: Buffer.from(css),
-            targets: lightning.browserslistToTargets(browserslist('defaults')),
-            minify: false,
-            sourceMap: false
-          })
-          .code.toString()
+        lightning.transform({
+          filename: example,
+          code: cssBuffer,
+          targets: lightningBrowsers,
+          minify: false,
+          sourceMap: false
+        })
       }
     },
     {
