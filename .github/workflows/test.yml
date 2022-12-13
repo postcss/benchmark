@@ -23,6 +23,6 @@ jobs:
           node-version: 19
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
       - name: Run tests
         run: pnpm test
