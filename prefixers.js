@@ -23,6 +23,8 @@ let origin = readFileSync(example).toString()
 let cleaner = postcss([autoprefixer({ overrideBrowserslist: [] })])
 let css = cleaner.process(origin, { from: example }).css
 let processor = postcss([autoprefixer])
+let cssBuffer = Buffer.from(css);
+let targets = lightning.browserslistToTargets(browserslist('defaults'));
 
 // Stylecow
 let stylecowOut = new stylecow.Coder()
@@ -62,12 +64,11 @@ module.exports = {
         lightning
           .transform({
             filename: example,
-            code: Buffer.from(css),
-            targets: lightning.browserslistToTargets(browserslist('defaults')),
+            code: cssBuffer,
+            targets,
             minify: false,
             sourceMap: false
           })
-          .code.toString()
       }
     },
     {
