@@ -1,9 +1,9 @@
-/* Results on Node 19.2.0, GitHub Actions:
+/* Results on Node 19.9.0, GitHub Actions:
 
-Lightning CSS: 13 ms   (9.0 times faster)
-Stylis:        21 ms   (5.8 times faster)
-Autoprefixer:  120 ms
-Stylecow:      1061 ms (8.9 times slower)
+Lightning CSS: 15 ms   (6.9 times faster)
+Stylis:        17 ms   (5.8 times faster)
+Autoprefixer:  101 ms
+Stylecow:      1032 ms (10.2 times slower)
 */
 
 let { existsSync, readFileSync } = require('fs')

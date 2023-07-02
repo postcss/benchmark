@@ -1,12 +1,6 @@
-/* Results on Node 19.2.0, GitHub Actions:
+/* Results on Node 19.9.0, GitHub Actions:
 
-PostCSS sync:   74 ms  (1.1 times faster)
-PostCSS:        78 ms
-LibSass sync:   110 ms (1.4 times slower)
-LibSass:        112 ms (1.4 times slower)
-Less:           140 ms (1.8 times slower)
-Dart Sass sync: 197 ms (2.5 times slower)
-Dart Sass:      376 ms (4.8 times slower)
+PostCSS: 826 ms
 */
 
 let { readFileSync, existsSync } = require('fs')
