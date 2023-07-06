@@ -36,20 +36,19 @@ let lightningBrowsers = lightning.browserslistToTargets(browsers)
 let cssBuffer = Buffer.from(css)
 
 module.exports = {
-  name: 'Prefixers',
   maxTime: 15,
+  name: 'Prefixers',
   tests: [
     {
-      name: 'Stylis',
       fn: () => {
         stylis.serialize(
           stylis.compile(css),
           stylis.middleware([stylis.prefixer, stylis.stringify])
         )
-      }
+      },
+      name: 'Stylis'
     },
     {
-      name: 'Autoprefixer',
       defer: true,
       fn: done => {
         processor
@@ -60,29 +59,30 @@ module.exports = {
           .then(() => {
             done.resolve()
           })
-      }
+      },
+      name: 'Autoprefixer'
     },
     {
-      name: 'Lightning CSS',
       fn: () => {
         lightning.transform({
-          filename: example,
           code: cssBuffer,
-          targets: lightningBrowsers,
+          filename: example,
           minify: false,
-          sourceMap: false
+          sourceMap: false,
+          targets: lightningBrowsers
         })
-      }
+      },
+      name: 'Lightning CSS'
     },
     {
-      name: 'Stylecow',
       defer: true,
       fn: done => {
         let code = stylecow.parse(css)
         stylecower.run(code)
         stylecowOut.run(code)
         done.resolve()
-      }
+      },
+      name: 'Stylecow'
     }
   ]
 }
@@ -94,7 +94,6 @@ if (existsSync(devA) && existsSync(devP)) {
   let devPostcss = require(devP)
   let devProcessor = devPostcss([devAutoprefixer])
   module.exports.tests.splice(0, 0, {
-    name: 'Autoprefixer dev',
     defer: true,
     fn: done => {
       devProcessor
@@ -105,6 +104,7 @@ if (existsSync(devA) && existsSync(devP)) {
         .then(() => {
           done.resolve()
         })
-    }
+    },
+    name: 'Autoprefixer dev'
   })
 }

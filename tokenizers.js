@@ -3,7 +3,7 @@
 PostCSS: 9 ms
 */
 
-let { readFileSync, existsSync } = require('fs')
+let { existsSync, readFileSync } = require('fs')
 let tokenize = require('postcss/lib/tokenize')
 let { join } = require('path')
 let Input = require('postcss/lib/input')
@@ -14,17 +14,17 @@ let css = readFileSync(example).toString()
 let input = new Input(css)
 
 module.exports = {
-  name: 'Tokenizers',
   maxTime: 15,
+  name: 'Tokenizers',
   tests: [
     {
-      name: 'PostCSS',
       defer: true,
       fn: done => {
         let t = tokenize(input)
         while (!t.endOfFile()) t.nextToken()
         done.resolve()
-      }
+      },
+      name: 'PostCSS'
     }
   ]
 }
@@ -35,12 +35,12 @@ if (existsSync(devPath)) {
   let DevInput = require(join(__dirname, '../postcss/lib/input'))
   let devInput = new DevInput(css)
   module.exports.tests.splice(1, 0, {
-    name: 'Next PostCSS',
     defer: true,
     fn: done => {
       let t = devTokenize(devInput)
       while (!t.endOfFile()) t.nextToken()
       done.resolve()
-    }
+    },
+    name: 'Next PostCSS'
   })
 }

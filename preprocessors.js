@@ -9,7 +9,7 @@ Dart Sass sync: 199 ms (2.5 times slower)
 Dart Sass:      372 ms (4.7 times slower)
 */
 
-let { readFileSync, writeFileSync, existsSync } = require('fs')
+let { existsSync, readFileSync, writeFileSync } = require('fs')
 let postcssSimpleVars = require('postcss-simple-vars')
 let postcssNested = require('postcss-nested')
 let postcssMixins = require('postcss-mixins')
@@ -61,61 +61,61 @@ for (i = 0; i < 100; i++) {
 }
 
 module.exports = {
-  name: 'Preprocessors',
   maxTime: 15,
+  name: 'Preprocessors',
   tests: [
     {
-      name: 'LibSass',
       defer: true,
       fn: done => {
         libsass.render({ data: scss }, () => done.resolve())
-      }
+      },
+      name: 'LibSass'
     },
     {
-      name: 'LibSass sync',
       fn: () => {
         libsass.renderSync({ data: scss })
-      }
+      },
+      name: 'LibSass sync'
     },
     {
-      name: 'Dart Sass',
       defer: true,
       fn: done => {
         sass.render({ data: scss }, () => done.resolve())
-      }
+      },
+      name: 'Dart Sass'
     },
     {
-      name: 'Dart Sass sync',
       fn: () => {
         sass.renderSync({ data: scss })
-      }
+      },
+      name: 'Dart Sass sync'
     },
     {
-      name: 'PostCSS',
       defer: true,
       fn: done => {
         processor.process(pcss, { from: example, map: false }).then(() => {
           done.resolve()
         })
-      }
+      },
+      name: 'PostCSS'
     },
     {
-      name: 'PostCSS sync',
       defer: true,
       fn: done => {
         processor.process(pcss, { from: example, map: false }).css
         done.resolve()
-      }
+      },
+      name: 'PostCSS sync'
     },
     {
-      name: 'Less',
       defer: true,
       fn: done => {
         less.render(lcss, { math: 'strict' }, err => {
           if (err) throw err
           done.resolve()
         })
-      }
+      },
+      name: 'Less'
     }
   ]
 }
@@ -129,20 +129,20 @@ if (existsSync(devPath)) {
     postcssMixins
   ])
   module.exports.tests.splice(6, 0, {
-    name: 'Next PostCSS',
     defer: true,
     fn: done => {
       devProcessor.process(pcss, { from: example, map: false }).then(() => {
         done.resolve()
       })
-    }
+    },
+    name: 'Next PostCSS'
   })
   module.exports.tests.splice(8, 0, {
-    name: 'Next PostCSS sync',
     defer: true,
     fn: done => {
       devProcessor.process(pcss, { from: example, map: false }).css
       done.resolve()
-    }
+    },
+    name: 'Next PostCSS sync'
   })
 }

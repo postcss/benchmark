@@ -12,7 +12,7 @@ Gonzales:     159 ms (4.8 times slower)
 ParserLib:    161 ms (4.9 times slower)
 */
 
-let { readFileSync, existsSync } = require('fs')
+let { existsSync, readFileSync } = require('fs')
 let postcssSP = require('postcss-selector-parser')
 let postcssVP = require('postcss-value-parser')
 let parserlib = require('parserlib')
@@ -30,25 +30,24 @@ let example = join(__dirname, 'cache', 'bootstrap.css')
 let css = readFileSync(example).toString()
 
 module.exports = {
-  name: 'Parsers',
   maxTime: 15,
+  name: 'Parsers',
   tests: [
     {
-      name: 'Rework',
       fn: () => {
         rework(css).toString()
-      }
+      },
+      name: 'Rework'
     },
     {
-      name: 'PostCSS',
       defer: true,
       fn: done => {
         postcss.parse(css, { from: example }).toResult()
         done.resolve()
-      }
+      },
+      name: 'PostCSS'
     },
     {
-      name: 'PostCSS Full',
       defer: true,
       fn: done => {
         let root = postcss.parse(css, { from: example })
@@ -61,49 +60,50 @@ module.exports = {
         })
         root.toResult()
         done.resolve()
-      }
+      },
+      name: 'PostCSS Full'
     },
     {
-      name: 'CSSOM',
       fn: () => {
         CSSOM.parse(css).toString()
-      }
+      },
+      name: 'CSSOM'
     },
     {
-      name: 'Mensch',
       fn: () => {
         mensch.stringify(mensch.parse(css))
-      }
+      },
+      name: 'Mensch'
     },
     {
-      name: 'Gonzales',
       fn: () => {
         gonzales.csspToSrc(gonzales.srcToCSSP(css))
-      }
+      },
+      name: 'Gonzales'
     },
     {
-      name: 'CSSTree',
       fn: () => {
         csstree.generate(csstree.parse(css))
-      }
+      },
+      name: 'CSSTree'
     },
     {
-      name: 'ParserLib',
       fn: () => {
         new parserlib.css.Parser().parse(css)
-      }
+      },
+      name: 'ParserLib'
     },
     {
-      name: 'Stylecow',
       fn: () => {
         stylecow.parse(css).toString()
-      }
+      },
+      name: 'Stylecow'
     },
     {
-      name: 'Stylis',
       fn: () => {
         stylis.serialize(stylis.compile(css), stylis.stringify)
-      }
+      },
+      name: 'Stylis'
     }
   ]
 }
@@ -112,11 +112,11 @@ let devPath = join(__dirname, '../postcss/lib/postcss.js')
 if (existsSync(devPath)) {
   let devPostcss = require(devPath)
   module.exports.tests.splice(1, 0, {
-    name: 'Next PostCSS',
     defer: true,
     fn: done => {
       devPostcss.parse(css, { from: example }).toResult()
       done.resolve()
-    }
+    },
+    name: 'Next PostCSS'
   })
 }
