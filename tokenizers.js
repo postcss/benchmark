@@ -1,3 +1,8 @@
+/* Results on Node 19.9.0, GitHub Actions:
+
+PostCSS: 9 ms
+*/
+
 let { readFileSync, existsSync } = require('fs')
 let tokenize = require('postcss/lib/tokenize')
 let { join } = require('path')

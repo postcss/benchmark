@@ -31,7 +31,7 @@ gulp.task('bootstrap', async () => {
   })
 })
 
-for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers']) {
+for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers', 'linters']) {
   gulp.task(
     name,
     gulp.series('bootstrap', () => {
@@ -47,5 +47,5 @@ for (let name of ['preprocessors', 'parsers', 'prefixers', 'tokenizers']) {
 
 gulp.task(
   'default',
-  gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers')
+  gulp.series('preprocessors', 'parsers', 'prefixers', 'tokenizers', 'linters')
 )

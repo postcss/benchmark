@@ -1,15 +1,15 @@
-/* Results on Node 19.2.0, GitHub Actions:
+/* Results on Node 19.9.0, GitHub Actions:
 
 Stylis:       14 ms  (2.3 times faster)
-CSSOM:        22 ms  (1.5 times faster)
-CSSTree:      31 ms  (1.1 times faster)
+CSSOM:        25 ms  (1.3 times faster)
+CSSTree:      32 ms  (1.0 times faster)
 PostCSS:      33 ms
-Mensch:       33 ms  (1.0 times slower)
-Rework:       51 ms  (1.5 times slower)
-Stylecow:     66 ms  (2.0 times slower)
-PostCSS Full: 93 ms  (2.8 times slower)
-ParserLib:    141 ms (4.2 times slower)
+Mensch:       34 ms  (1.0 times slower)
+Rework:       52 ms  (1.6 times slower)
+Stylecow:     75 ms  (2.3 times slower)
+PostCSS Full: 98 ms  (3.0 times slower)
 Gonzales:     159 ms (4.8 times slower)
+ParserLib:    161 ms (4.9 times slower)
 */
 
 let { readFileSync, existsSync } = require('fs')
