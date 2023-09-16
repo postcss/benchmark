@@ -1,6 +1,6 @@
 /* Results on Node 20.3.1, Github Actions:
 
-TODO
+PostCSS: 389 ms
 */
 
 let { existsSync, readFileSync } = require('fs')
