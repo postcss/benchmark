@@ -17,20 +17,14 @@ module.exports = {
     {
       defer: true,
       fn: done => {
-        {
-          let root = postcss.parse(css, { from: example })
-          root.toResult({ map: { inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
-        }
+        let root = postcss.parse(css, { from: example })
+        root.toResult({ map: { inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
 
-        {
-          let root = postcss.parse(css, { from: example })
-          root.toResult({ map: { absolute: true, inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
-        }
+        root = postcss.parse(css, { from: example })
+        root.toResult({ map: { absolute: true, inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
 
-        {
-          let root = postcss.parse(css, { from: example })
-          root.toResult({ map: { inline: true }, to: 'dist/bootstrap.css' })
-        }
+        root = postcss.parse(css, { from: example })
+        root.toResult({ map: { inline: true }, to: 'dist/bootstrap.css' })
 
         done.resolve()
       },
@@ -45,20 +39,14 @@ if (existsSync(devPath)) {
   module.exports.tests.splice(1, 0, {
     defer: true,
     fn: done => {
-      {
-        let root = devPostcss.parse(css, { from: example })
-        root.toResult({ map: { inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
-      }
+      let root = devPostcss.parse(css, { from: example })
+      root.toResult({ map: { inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
 
-      {
-        let root = devPostcss.parse(css, { from: example })
-        root.toResult({ map: { absolute: true, inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
-      }
+      root = devPostcss.parse(css, { from: example })
+      root.toResult({ map: { absolute: true, inline: false }, to: 'dist/bootstrap.css' }).map.toJSON()
 
-      {
-        let root = devPostcss.parse(css, { from: example })
-        root.toResult({ map: { inline: true }, to: 'dist/bootstrap.css' })
-      }
+      root = devPostcss.parse(css, { from: example })
+      root.toResult({ map: { inline: true }, to: 'dist/bootstrap.css' })
 
       done.resolve()
     },
