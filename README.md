@@ -6,6 +6,12 @@ All results below was run on Node 20.3.1, Github Actions:
 
 [PostCSS]: https://github.com/postcss/postcss
 
+---
+
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="" width="22" height="16" />  Made in <b><a href="https://evilmartians.com/?utm_source=postcss&utm_campaign=devtools-button&utm_medium=github">Evil Martians</a></b>, product consulting for <b>developer tools</b>.
+
+---
+
 
 ## Preprocessors
 
