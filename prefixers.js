@@ -6,13 +6,13 @@ Autoprefixer:  96 ms
 Stylecow:      1009 ms (10.5 times slower)
 */
 
-let { existsSync, readFileSync } = require('fs')
+let { existsSync, readFileSync } = require('node:fs')
 let stylecowPrefixes = require('stylecow-plugin-prefixes')
 let autoprefixer = require('autoprefixer')
 let browserslist = require('browserslist')
 let lightning = require('lightningcss')
 let stylecow = require('stylecow-core')
-let { join } = require('path')
+let { join } = require('node:path')
 let postcss = require('postcss')
 let stylis = require('stylis')
 

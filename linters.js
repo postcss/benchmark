@@ -3,9 +3,9 @@
 PostCSS: 577 ms
 */
 
-let { existsSync, readFileSync } = require('fs')
+let { existsSync, readFileSync } = require('node:fs')
 let stylelint = require('stylelint')
-let { join } = require('path')
+let { join } = require('node:path')
 let postcss = require('postcss')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')

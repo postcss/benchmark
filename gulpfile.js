@@ -1,7 +1,7 @@
-let { createWriteStream, existsSync } = require('fs')
-let { dirname, join } = require('path')
-let { mkdir, rm } = require('fs/promises')
-let { get } = require('https')
+let { createWriteStream, existsSync } = require('node:fs')
+let { dirname, join } = require('node:path')
+let { mkdir, rm } = require('node:fs/promises')
+let { get } = require('node:https')
 let gulp = require('gulp')
 
 // Benchmark

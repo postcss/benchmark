@@ -3,9 +3,9 @@
 PostCSS: 11 ms
 */
 
-let { existsSync, readFileSync } = require('fs')
+let { existsSync, readFileSync } = require('node:fs')
 let tokenize = require('postcss/lib/tokenize')
-let { join } = require('path')
+let { join } = require('node:path')
 let Input = require('postcss/lib/input')
 
 let example = join(__dirname, 'cache', 'bootstrap.css')

@@ -9,11 +9,11 @@ Dart Sass sync: 219 ms (3.0 times slower)
 Dart Sass:      397 ms (5.5 times slower)
 */
 
-let { existsSync, readFileSync, writeFileSync } = require('fs')
+let { existsSync, readFileSync, writeFileSync } = require('node:fs')
 let postcssSimpleVars = require('postcss-simple-vars')
 let postcssNested = require('postcss-nested')
 let postcssMixins = require('postcss-mixins')
-let { join } = require('path')
+let { join } = require('node:path')
 let postcss = require('postcss')
 let libsass = require('node-sass')
 let sass = require('sass')
