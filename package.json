@@ -17,7 +17,7 @@
     "mensch": "^0.3.4",
     "node-sass": "^9.0.0",
     "parserlib": "^1.1.1",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.30",
     "postcss-mixins": "^9.0.4",
     "postcss-nested": "^6.0.1",
     "postcss-selector-parser": "^6.0.13",
