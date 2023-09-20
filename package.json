@@ -4,7 +4,7 @@
     "test": "eslint . && gulp"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.15",
+    "autoprefixer": "^10.4.16",
     "browserslist": "^4.21.10",
     "css-tree": "^2.3.1",
     "cssom": "^0.5.0",
