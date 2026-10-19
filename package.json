@@ -20,7 +20,7 @@
     "postcss": "^8.5.10",
     "postcss-mixins": "^9.0.4",
     "postcss-nested": "^6.0.1",
-    "postcss-selector-parser": "^6.0.13",
+    "postcss-selector-parser": "^7.1.6",
     "postcss-simple-vars": "^7.0.1",
     "postcss-value-parser": "^4.2.0",
     "rework": "^1.0.1",
